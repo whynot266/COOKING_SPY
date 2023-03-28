@@ -6,10 +6,15 @@
 package com.mycompany.spring_mvc_project_final.service;
 
 import com.mycompany.spring_mvc_project_final.entities.AccountEntity;
+import com.mycompany.spring_mvc_project_final.entities.AccountsRolesEntity;
 import com.mycompany.spring_mvc_project_final.entities.RoleEntity;
+import com.mycompany.spring_mvc_project_final.entities.UserEntity;
 import com.mycompany.spring_mvc_project_final.enums.UserStatus;
 import java.util.HashSet;
 import java.util.Set;
+
+import com.mycompany.spring_mvc_project_final.repository.AccountsRolesRepository;
+import com.mycompany.spring_mvc_project_final.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -26,29 +31,30 @@ import com.mycompany.spring_mvc_project_final.repository.RoleRepository;
 public class UserDetailsServiceImpl implements UserDetailsService {
 
     @Autowired
-    private AccountRepository userRepository;
+    private AccountRepository accountRepository;
 
     @Autowired
-    private RoleRepository userRoleRepository;
+    private AccountsRolesRepository accountsRolesRepository;
 
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
-        AccountEntity user = userRepository.findByEmailLikeAndStatusLike(email, UserStatus.ACTIVE);
-        if (user == null) {
+        AccountEntity account = accountRepository.findByEmailLikeAndStatusLike(email, UserStatus.ACTIVE);
+        System.out.println(account.getEmail());
+        if (account == null) {
             throw new UsernameNotFoundException(email);
         }
-        Set<RoleEntity> roleNames = userRoleRepository.findByUsers_Email(email);
+
+        Set<String> roleNames= accountsRolesRepository.findAllByAccountId(account.getId());
         Set<GrantedAuthority> grantList = new HashSet<>();
         if (!CollectionUtils.isEmpty(roleNames)) {
-            for (RoleEntity role : roleNames) {
-                GrantedAuthority authority = new SimpleGrantedAuthority(role.getRole().toString());
+            for (String role : roleNames) {
+                GrantedAuthority authority = new SimpleGrantedAuthority(role);
                 grantList.add(authority);
             }
         }
-
-        return (UserDetails) new User(user.getEmail(), user.getPassword(), grantList);
+        return (UserDetails) new User(account.getEmail(), account.getPassword(), grantList);
     }
-    
+
     
     
 }

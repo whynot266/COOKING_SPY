@@ -5,11 +5,13 @@
  */
 package com.mycompany.spring_mvc_project_final.configuration;
 
+import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.boot.web.servlet.MultipartConfigFactory;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.util.unit.DataSize;
+import org.springframework.web.filter.CharacterEncodingFilter;
 import org.springframework.web.multipart.MultipartResolver;
 import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
@@ -34,6 +36,15 @@ public class MvcConfig implements WebMvcConfigurer {
         return resolver;
     }
 
+    @Bean
+    public FilterRegistrationBean<CharacterEncodingFilter> characterEncodingFilter() {
+        FilterRegistrationBean<CharacterEncodingFilter> registrationBean = new FilterRegistrationBean<>();
+        registrationBean.setFilter(new CharacterEncodingFilter());
+        registrationBean.addInitParameter("encoding", "UTF-8");
+        registrationBean.addInitParameter("forceEncoding", "true");
+        registrationBean.addUrlPatterns("/*");
+        return registrationBean;
+    }
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
         registry.addResourceHandler("/webjars/**").addResourceLocations("/webjars/");

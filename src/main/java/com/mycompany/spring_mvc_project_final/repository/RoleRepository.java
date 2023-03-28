@@ -6,12 +6,12 @@
 package com.mycompany.spring_mvc_project_final.repository;
 
 import com.mycompany.spring_mvc_project_final.entities.RoleEntity;
-import java.util.Set;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
 public interface RoleRepository extends JpaRepository<RoleEntity, Long> {
+    RoleEntity findByRoleName(String role);
 
-    Set<RoleEntity> findByUsers_Email(String email);
 }

@@ -14,30 +14,42 @@
         <link rel="stylesheet" href="<c:url value="/resources/css/login.css"/>">    
     </head>
     <body>
-
-       <form action="<c:url value="j_spring_security_check"/>" method="post">
-            <div class="login-box">
-                <h1>Login</h1>
+       <div class="header" >
+           <div class="sysbar">
+               <a href="">COOKING SPY</a>
+           </div>
+       </div>
+        <div class="container">
                  <!-- /login?error=true -->
                   <div class="textbox">
                         <c:if test="${message != null && message != ''}">
-                            <p style="color: red">${message}</p>
+                            <p style="color: red;">${message}</p>
                         </c:if>
                    </div>
-                <div class="textbox">
-                    <i class="fas fa-user"></i>
-                    <input style="color:white;" type="email" name="username" placeholder="Username">
-                </div>
+                <form action="<c:url value="j_spring_security_check"/>" method="post" class="card">
+                    <h2 style="align-self: center;">ĐĂNG NHẬP</h2>
 
-                <div class="textbox">
-                    <i class="fas fa-lock"></i>
-                    <input style="color:white;"type="password" name="password"placeholder="Password">
-                </div>
+                    <div class="form-group">
 
-                <input type="submit" class="btn" value="Sign in">
-                <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+                        <label for="name">Email</label>
+                        <input type="email" name="username" placeholder="Username">
+                    </div>
+                    <div class="form-group">
+                        <label for="image">Mật khẩu</label>
+                        <input type="password" name="password"placeholder="Password">
+                    </div>
+                    <div class="res">
+                        <span>Chưa có tài khoản?</span>
+                        <a href="./registrationForm">Tạo tài khoản</a>
+                    </div>
+                    <input type="submit" value="Đăng nhập" style="width: 200px; padding:10px 20px 10px 20px;align-self: center; color:#fff;background-color: black;font-size: 1rem;">
+                    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+                </form>
+
+
+
             </div>
-        </form>
+
        
     </body>
 </html>

@@ -5,8 +5,10 @@
 package com.mycompany.spring_mvc_project_final.service;
 
 import com.mycompany.spring_mvc_project_final.entities.AccountEntity;
+import com.mycompany.spring_mvc_project_final.entities.UserEntity;
 import com.mycompany.spring_mvc_project_final.enums.UserStatus;
 import com.mycompany.spring_mvc_project_final.repository.AccountRepository;
+import com.mycompany.spring_mvc_project_final.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -18,8 +20,12 @@ import org.springframework.stereotype.Service;
 public class AccountService {
     @Autowired
     private AccountRepository accountRepository;
-
+    @Autowired
+    UserRepository userRepository;
     public AccountEntity getAccountByEmail(String email) {
         return accountRepository.findByEmailLikeAndStatusLike(email, UserStatus.ACTIVE);
+    }
+    public UserEntity getUserByUsername(String username){
+        return userRepository.findByAccountId(accountRepository.findByEmailLike(username).getId());
     }
 }

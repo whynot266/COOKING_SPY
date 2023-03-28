@@ -1,0 +1,320 @@
+body{
+
+    padding: 0;
+    margin: 0;
+
+}
+.foodinfo-calculator-envaluate-box{
+
+    padding: 150px 100px 0px 80px;
+    display: flex;
+    flex-direction: column;
+    column-gap: 20px;
+    row-gap: 20px;
+
+}
+
+.foodinfo{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    row-gap: 10px;
+
+}
+.foodinfo .name{
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-kerning: none;
+    font-size: 2.6rem;
+    font-weight: 900;
+}
+
+.foodinfo .labels{
+    display: flex;
+    column-gap: 20px;
+}
+
+.foodinfo .short-des{
+    font:small-caption;
+    font-weight: 100;
+    font-weight:600;
+    font-size: 1rem;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-kerning: none;
+}
+
+.foodinfo .labels a{
+    padding: 5px 3px 5px 3px;
+    background-color: black;
+    color: #fff;
+    font-size: 90%;
+    font-weight: bolder;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.calculator{
+     box-shadow: 2px 2px 4px rgba(0,0,0,0.2), -2px -2px 4px rgba(255,255,255,0.1);
+    display: flex;
+    column-gap: 20px;
+    flex-wrap: nowrap;
+    border-radius:5px;
+}
+.calculator .food-list{
+    display:flex;
+    flex-direction: column;
+    row-gap: 30px;
+    width: 500px;
+}
+.calculator .food-list .food{
+    padding: 7px;
+    display: flex;
+    flex-wrap: nowrap;
+    column-gap: 20px;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 2px 2px 4px rgba(0,0,0,0.2), -2px -2px 4px rgba(255,255,255,0.1);
+    border-radius: 20px;
+}
+.calculator .food-list .food:hover{
+    background: linear-gradient(#fdcdb9, #fedeb4);
+    color: rgb(7, 7, 116);
+
+}
+.food .food-img{
+    display: flex;
+    border-radius: 20px;
+    box-shadow: 2px 2px 4px rgba(0,0,0,0.2), -2px -2px 4px rgba(255,255,255,0.1);
+    width: 150px;
+    height: 150px;
+
+}
+
+
+.food .info{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    row-gap: 30px;
+    padding: 0px 3px 0px 5px;
+    font-size: 1.3rem;
+    font-weight: bolder;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    flex-grow: 1;
+    height: 100%;
+    overflow: hidden;
+
+    border-radius: 20px;
+}
+.food .info .name{
+    padding-bottom: 22px;
+    font-size: 1.5rem;
+    border-bottom: 0.2px solid rgb(231, 178, 78);
+}
+.food .info .coeff{
+    display: flex;
+    column-gap: 10px;
+}
+.food .del-btn{
+    border: none;
+    outline: none;
+    background-color: transparent;
+    padding: 0px 3px 0px 5px;
+    font-size: 2rem;
+    font-weight: bolder;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    flex-grow: 0.1;
+    opacity: 0.7;
+}
+.food .del-btn:hover{
+    color: chocolate;
+}
+
+.calculator .ingredient-list{
+    flex-grow: 0.9;
+    width: 400px;
+    display: flex;
+    flex-direction: column;
+    row-gap: 20px;
+
+    height: 360px;
+
+}
+.calculator .ingredient-list .list{
+
+    padding: 0px 6px 10px 0px;
+    display: flex;
+    flex-direction: column;
+    row-gap: 20px;
+
+     overflow-y: scroll;
+}
+
+
+
+.calculator .ingredient-list .list-name{
+    padding: 0px 3px 0px 5px;
+    border-bottom: solid 2px black;
+    font-size: 1.3rem;
+    font-weight: bolder;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+
+}
+
+.calculator .ingredient-list .ingre{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 0.1px dotted gray;
+}
+
+.calculator .ingredient-list .ingre .ingre-name{
+    font-weight: bolder;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+.calculator .calculator-tutorial-container{
+    width: 900px;
+
+}
+.calculator .calculator-tutorial-container .section-btn-box{
+    display: flex;
+
+}
+.calculator .calculator-tutorial-container .section-btn-box button{
+    box-shadow: 2px 2px 4px rgba(0,0,0,0.2), -2px -2px 4px rgba(255,255,255,0.1);
+    border: none;
+    outline: none;
+    width: 50%;
+    background-color: #fff;
+    padding: 5px 3px 5px 3px;
+    font-size: 1.5rem;
+    font-weight: bolder;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    transition: 0.2s;
+}
+.calculator .calculator-tutorial-container .section-btn-box button:focus{
+    box-shadow: none;
+    background-color: rgba(0,0,0,0.008);
+}
+.sliding-sections{
+    position: relative;
+    width: 900px;
+    height: 300px;
+}
+.sliding-sections .section{
+    display: block;
+    position: relative;
+    width: 900px;
+    height: 300px;
+}
+.sliding-sections .right{
+    display: none;
+
+}
+
+
+
+
+.calculator .tutorial{
+    background-color: rgba(0,0,0,0.008);
+    padding: 20px 60px 20px 60px;
+    margin: 2px;
+    font-weight:600;
+    font-size: 1rem;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-kerning: none;
+
+}
+/* width */
+::-webkit-scrollbar {
+    width: 8px;
+    border-radius: 10px;
+  }
+
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background: rgba(0,0,0,0.1);
+    border-radius: 10px;
+    background-clip: content-box;
+  }
+
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: black;
+    border-radius: 10px;
+    width: 9px;
+
+  }
+
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: rgb(240, 131, 89);
+  }
+
+.calculator .section-btn-box  .table-name .cap{
+    font:small-caption;
+    margin: 2px;
+    font-weight:600;
+    font-size: 1rem;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-kerning: none;
+}
+.calculator .nutrition-list{
+    background-color: rgba(0,0,0,0.008);
+    display: flex;
+    flex-direction: column;
+    padding: 20px 60px 20px 60px;
+    row-gap: 12px;
+}
+.calculator .nutrition-list .nutrition {
+    -webkit-user-select: none; /* Safari */
+      -ms-user-select: none; /* IE 10 and IE 11 */
+      user-select: none;
+    display: flex;
+    column-gap: 10px;
+    align-items: center;
+    justify-content: space-between;
+    padding:20px;
+    border-radius:30px;
+    box-shadow: 1px 0.6px 2px gray;
+}
+
+.calculator .nutrition-list .nutrition .nutri-name{
+    padding: 0px 3px 0px 5px;
+    font-size: 1rem;
+    font-weight: bolder;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+.calculator .nutrition-list .nutrition .nutri-amount{
+    background-color: rgba(255,245,230,1);
+    border-radius:35px;
+    width: 80%;
+    height: 16px;
+    overflow: hidden;
+    box-shadow: 1px 0.6px 3px gray;
+}
+.calculator .nutrition-list .nutrition .nutri-amount .amount-bar{
+    height: 100%;
+    border-radius:30px;
+
+    box-shadow: 1px 0.6px 3px gray;
+    animation: bar-move 0.6s;
+    animation-timing-function:cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    animation-iteration-count: 1;
+}
+@keyframes bar-move {
+    from {transform: translateX(-100%);}
+    to {transform: translateX(0);}
+}
+
+.del-btn{
+
+    text-align:center;
+    width:120px;
+    text-decoration:none;
+    background: linear-gradient(#CB356B, #C6426E);
+    font-weight: bolder;
+    color: white;
+    padding:20px
+    border-radius:15px;
+    margin-top:30px;
+
+}

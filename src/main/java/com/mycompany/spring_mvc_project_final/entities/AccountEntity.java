@@ -10,46 +10,26 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "account")
-public class AccountEntity implements Serializable {
+public class AccountEntity{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-
     @Column(unique = true, length = 100)
     private String email;
     private String password;
-
+    @OneToOne(mappedBy = "account")
+    private UserEntity user;
     @Column(nullable = false)
     @Enumerated(EnumType.STRING)
     private UserStatus status;
-
-    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    @JoinTable(name = "account_role",
-            joinColumns = @JoinColumn(name = "user_id",
-                    referencedColumnName = "id"),
-            inverseJoinColumns = @JoinColumn(
-                    name = "role_id",
-                    referencedColumnName = "id"))
-    private Set<RoleEntity> userRoles;
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @Column(name = "account_role_set")
+    private Set<AccountsRolesEntity> accountsRolesEntitySet;
 
     public AccountEntity() {
     }
@@ -78,12 +58,13 @@ public class AccountEntity implements Serializable {
         this.password = password;
     }
 
-    public Set<RoleEntity> getUserRoles() {
-        return userRoles;
+
+    public Set<AccountsRolesEntity> getAccountsRolesEntitySet() {
+        return accountsRolesEntitySet;
     }
 
-    public void setUserRoles(Set<RoleEntity> userRoles) {
-        this.userRoles = userRoles;
+    public void setAccountsRolesEntitySet(Set<AccountsRolesEntity> accountsRolesEntitySet) {
+        this.accountsRolesEntitySet = accountsRolesEntitySet;
     }
 
     public UserStatus getStatus() {
@@ -94,4 +75,11 @@ public class AccountEntity implements Serializable {
         this.status = status;
     }
 
+    public UserEntity getUser() {
+        return user;
+    }
+
+    public void setUser(UserEntity user) {
+        this.user = user;
+    }
 }
