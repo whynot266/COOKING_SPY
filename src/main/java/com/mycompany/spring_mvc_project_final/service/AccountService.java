@@ -12,6 +12,8 @@ import com.mycompany.spring_mvc_project_final.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 /**
  *
  * @author Admin
@@ -22,10 +24,26 @@ public class AccountService {
     private AccountRepository accountRepository;
     @Autowired
     UserRepository userRepository;
+    public AccountEntity getAccountByVerifiCationCode(String code){
+        return accountRepository.findByVerificationCode(code);
+    }
     public AccountEntity getAccountByEmail(String email) {
         return accountRepository.findByEmailLikeAndStatusLike(email, UserStatus.ACTIVE);
+    }
+    public AccountEntity getAccountByJustEmail(String email) {
+        return accountRepository.findByJustEmailLike(email);
     }
     public UserEntity getUserByUsername(String username){
         return userRepository.findByAccountId(accountRepository.findByEmailLike(username).getId());
     }
+    public List<AccountEntity> findAllAccount(){
+        return accountRepository.findAll();
+    }
+    public AccountEntity findById(long id){
+        return accountRepository.findById(id).get();
+    }
+    public List<AccountEntity> getListAccountByJustEmail(String email) {
+        return accountRepository.findListAccountByJustEmailLike(email);
+    }
+
 }

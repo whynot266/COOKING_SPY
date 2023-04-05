@@ -59,7 +59,7 @@ public class FilterController {
         UserEntity user= accountService.getUserByUsername(username);
         List<FoodEntity> listOfFoods= new ArrayList<>();
         for (FoodEntity food: foodEntityList){
-            if (food.getCellulozaSummary()>=10){
+            if (food.getCellulozaSummary()>= user.getCellulozaNeeded()/4){
                 listOfFoods.add(food);
             }
         }

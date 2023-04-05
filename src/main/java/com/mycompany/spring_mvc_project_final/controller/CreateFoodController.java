@@ -110,7 +110,7 @@ public class CreateFoodController {
         foodDto.setLabelDtoList(labelDtos);
         createFoodService.createFood(foodDto);
 
-        return "redirect:/createForm";
+        return "redirect:/home";
     }
 
 

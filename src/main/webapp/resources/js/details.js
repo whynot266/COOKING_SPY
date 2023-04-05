@@ -1,5 +1,5 @@
  $(document).ready(function () {
-    console.log("rara")
+
     const container = $('.img');
     const button = $('#add-button');
 

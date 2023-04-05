@@ -82,8 +82,13 @@ public class DetailsService {
             String encodeName = new String(bytes, StandardCharsets.UTF_8);
             IngredientEntity ingredient = ingredientRepository.findByName(encodeName);
             FoodsIngredientsEntity foodsIngredientsEntity = new FoodsIngredientsEntity();
+            if (ingredient!=null){
+                foodsIngredientsEntity.setIngredient(ingredient);
+            }else {
+                foodsIngredientsEntity.setIngredient(ingredientRepository.findById(268).get());
+            }
             foodsIngredientsEntity.setFood(food);
-            foodsIngredientsEntity.setIngredient(ingredient);
+
             foodsIngredientsEntity.setAmount(ingredientRequest.getAmount());
             foodsIngredientsEntity.setMeasure(ingredientRequest.getMeasure());
             foodsIngredientsEntityList.add(foodsIngredientsEntity);

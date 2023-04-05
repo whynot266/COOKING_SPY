@@ -6,6 +6,9 @@
 package com.mycompany.spring_mvc_project_final.entities;
 
 import com.mycompany.spring_mvc_project_final.enums.UserStatus;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -30,8 +33,17 @@ public class AccountEntity{
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @Column(name = "account_role_set")
     private Set<AccountsRolesEntity> accountsRolesEntitySet;
-
+    @Column(name = "verification_code")
+    private String verificationCode;
     public AccountEntity() {
+    }
+
+    public String getVerificationCode() {
+        return verificationCode;
+    }
+
+    public void setVerificationCode(String verificationCode) {
+        this.verificationCode = verificationCode;
     }
 
     public long getId() {

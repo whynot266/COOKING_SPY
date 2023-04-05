@@ -37,8 +37,9 @@ $(document).ready(function() {
         console.log(value);
 
         var inputBox = $(this).closest("td").find('.ingreName.form-control');
-        console.log(inputBox);
+
         inputBox.val(value);
+        console.log(inputBox);
         $(this).closest('.suggestions').hide();
     });
 

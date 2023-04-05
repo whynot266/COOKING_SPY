@@ -5,10 +5,7 @@ import com.mycompany.spring_mvc_project_final.dto.IngredientRequest;
 import com.mycompany.spring_mvc_project_final.dto.LabelRequest;
 import com.mycompany.spring_mvc_project_final.entities.FoodEntity;
 import com.mycompany.spring_mvc_project_final.entities.UserEntity;
-import com.mycompany.spring_mvc_project_final.service.AccountService;
-import com.mycompany.spring_mvc_project_final.service.CreateFoodService;
-import com.mycompany.spring_mvc_project_final.service.DetailsService;
-import com.mycompany.spring_mvc_project_final.service.UserDetailsServiceImpl;
+import com.mycompany.spring_mvc_project_final.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -26,6 +23,8 @@ import java.util.List;
 
 @Controller
 public class FoodDetailsController {
+    @Autowired
+    TodayDietService todayDietService;
     @Autowired
     CreateFoodService createFoodService;
     @Autowired
@@ -47,6 +46,7 @@ public class FoodDetailsController {
     }
     @RequestMapping(value = "/deleteFood/{id}", method = RequestMethod.GET)
     public String deleteFood(@PathVariable(value = "id") long id){
+        todayDietService.deleteFoodFromTodayDietByAdmin(id);
         detailsService.deleteFoodById(id);
         return "redirect:/";
     }
@@ -64,7 +64,7 @@ public class FoodDetailsController {
         return "update";
     }
     @RequestMapping(value="/updateFood/update-process", method = RequestMethod.POST)
-    public String updateBook(@ModelAttribute(value="food") FoodRequest food,
+    public String submit(@ModelAttribute(value="food") FoodRequest food,
                              BindingResult foodResult,
                              RedirectAttributes redirectAttributes){
         if (foodResult.hasErrors()){
@@ -81,14 +81,23 @@ public class FoodDetailsController {
             food.setLabelRequests(new ArrayList<>());
         }
         List<IngredientRequest> ingredientRequestList = food.getIngredientRequests();
+
         for (int i=0; i<ingredientRequestList.size();i++){
-            for (int j=i+1; j<ingredientRequestList.size();j++){
-                if(ingredientRequestList.get(j).getName().equals(ingredientRequestList.get(i).getName())){
-                    ingredientRequestList.get(i).setAmount(ingredientRequestList.get(i).getAmount()+ingredientRequestList.get(j).getAmount()*ingredientRequestList.get(j).getMeasureCo()/ingredientRequestList.get(i).getMeasureCo());
-                    ingredientRequestList.remove(ingredientRequestList.get(j));
+            if(ingredientRequestList.get(i).getName()==null){
+                ingredientRequestList.remove(ingredientRequestList.get(i));
+            }
+        }
+        if(ingredientRequestList.size()>1){
+            for (int i=0; i<ingredientRequestList.size();i++){
+                for (int j=i+1; j<ingredientRequestList.size();j++){
+                    if(ingredientRequestList.get(j).getName().equals(ingredientRequestList.get(i).getName())){
+                        ingredientRequestList.get(i).setAmount(ingredientRequestList.get(i).getAmount()+ingredientRequestList.get(j).getAmount()*ingredientRequestList.get(j).getMeasureCo()/ingredientRequestList.get(i).getMeasureCo());
+                        ingredientRequestList.remove(ingredientRequestList.get(j));
+                    }
                 }
             }
         }
+
         List<LabelRequest> labelRequestList = food.getLabelRequests();
         for (int i=0; i<labelRequestList.size();i++){
             if(labelRequestList.get(i).getName()==null){

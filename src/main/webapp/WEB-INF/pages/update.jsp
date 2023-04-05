@@ -84,15 +84,18 @@
                 // Update the "path" and "name" attributes of the <input> and <select> elements in the new <tr> element
                 row.find(".ingreName").attr({
                     "path": "ingredientRequests[" + index + "].name",
-                    "name": "ingredientRequests[" + index + "].name"
+                    "name": "ingredientRequests[" + index + "].name",
+                    "value": ""
                 });
                 row.find("input[type='number']").attr({
                     "path": "ingredientRequests[" + index + "].amount",
-                    "name": "ingredientRequests[" + index + "].amount"
+                    "name": "ingredientRequests[" + index + "].amount",
+                    "value": "0.1"
                 });
                 row.find(".measure").attr({
                     "path": "ingredientRequests[" + index + "].measure",
-                    "name": "ingredientRequests[" + index + "].measure"
+                    "name": "ingredientRequests[" + index + "].measure",
+                    "value": "1"
                 });
 
                 // Append the new <tr> element to the <tbody> of the table
@@ -174,7 +177,7 @@
                                      <ul class="suggestions"></ul>
                                 </td>
                                 <td>
-                                    <mvc:input type="number" class="form-control" path="ingredientRequests[${i}].amount" min="0" step="0.01" />
+                                    <mvc:input type="number" class="form-control" path="ingredientRequests[${i}].amount" min="0.1" step="0.01" />
                                 </td>
                                 <td>
                                     <mvc:select class="form-control measure" path="ingredientRequests[${i}].measure">

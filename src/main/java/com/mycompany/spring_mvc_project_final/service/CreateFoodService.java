@@ -58,9 +58,14 @@ public class CreateFoodService {
         List<FoodsLabelsEntity> foodsLabelsEntityList= new ArrayList<>();
         for(IngredientDto ingredientDto: foodDto.getIngredientDtoList()){
             IngredientEntity ingredient = ingredientRepository.findByName(ingredientDto.getName());
+
             FoodsIngredientsEntity foodsIngredientsEntity = new FoodsIngredientsEntity();
             foodsIngredientsEntity.setFood(food);
-            foodsIngredientsEntity.setIngredient(ingredient);
+            if (ingredient!=null){
+                foodsIngredientsEntity.setIngredient(ingredient);
+            }else {
+                foodsIngredientsEntity.setIngredient(ingredientRepository.findById(268).get());
+            }
             foodsIngredientsEntity.setAmount(ingredientDto.getAmount());
             foodsIngredientsEntity.setMeasure(ingredientDto.getMeasure());
             foodsIngredientsEntityList.add(foodsIngredientsEntity);

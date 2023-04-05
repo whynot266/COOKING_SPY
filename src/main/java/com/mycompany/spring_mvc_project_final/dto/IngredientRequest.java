@@ -42,6 +42,16 @@ public class IngredientRequest {
     public int getMeasure() {
         return measure;
     }
+    public String getMeasureName(){
+        if (this.measure==1){
+            return "g";
+        } else if (this.measure==2) {
+            return "thìa cà phê";
+        } else if (this.measure==3) {
+            return "thìa canh";
+        }
+        return "";
+    }
     public double getMeasureCo() {
         if (this.measure==1){
             return 0.01;

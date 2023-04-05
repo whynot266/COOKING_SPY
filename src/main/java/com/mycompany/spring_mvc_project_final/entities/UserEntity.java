@@ -12,7 +12,9 @@ public class UserEntity {
     @OneToOne(cascade = {CascadeType.ALL})
     @JoinColumn(name = "account_id", referencedColumnName = "id")
     private AccountEntity account;
-
+    @OneToOne(cascade = {CascadeType.ALL})
+    @JoinColumn(name = "todayDiet_id", referencedColumnName = "id")
+    private TodayDietEntity todayDiet;
     @Column(name = "height")
     private double height;
 
@@ -28,12 +30,22 @@ public class UserEntity {
     @Column(name = "status")
     private int status;
 
+
+
     public long getId() {
         return id;
     }
 
     public void setId(long id) {
         this.id = id;
+    }
+
+    public TodayDietEntity getTodayDiet() {
+        return todayDiet;
+    }
+
+    public void setTodayDiet(TodayDietEntity todayDiet) {
+        this.todayDiet = todayDiet;
     }
 
     public AccountEntity getAccount() {

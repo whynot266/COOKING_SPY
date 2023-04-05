@@ -18,7 +18,7 @@
    <div class="container">
                 <a href="/project-final/home">COOKING SPY</a>
                 <h1>TẠO MÓN ĂN MỚI</h1>
-                <mvc:form id="createFoodForm" method="post" action="./createFood" modelAttribute="foodRequest" accept-charset="UTF-8">
+                <mvc:form id="createFoodForm" method="post" action="./createFood" modelAttribute="foodRequest" accept-charset="UTF-8" >
                     <div class="form-group">
                         <label for="name">Tên món</label>
                         <mvc:input type="text" class="form-control" id="name" path="name" />
@@ -49,7 +49,7 @@
                                         <ul class="suggestions"></ul>
                                     </td>
                                     <td>
-                                        <mvc:input type="number" class="form-control" path="ingredientRequests[0].amount" min="0" step="0.01"/>
+                                        <mvc:input type="number" class="form-control" path="ingredientRequests[0].amount" min="0.1" step="0.01"/>
                                     </td>
                                     <td>
                                         <form:select class="form-control measure" path="ingredientRequests[0].measure">

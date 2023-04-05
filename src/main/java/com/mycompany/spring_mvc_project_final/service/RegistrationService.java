@@ -5,10 +5,7 @@
 package com.mycompany.spring_mvc_project_final.service;
 
 import com.mycompany.spring_mvc_project_final.dto.UserRequest;
-import com.mycompany.spring_mvc_project_final.entities.AccountEntity;
-import com.mycompany.spring_mvc_project_final.entities.AccountsRolesEntity;
-import com.mycompany.spring_mvc_project_final.entities.RoleEntity;
-import com.mycompany.spring_mvc_project_final.entities.UserEntity;
+import com.mycompany.spring_mvc_project_final.entities.*;
 import com.mycompany.spring_mvc_project_final.enums.UserStatus;
 import com.mycompany.spring_mvc_project_final.repository.AccountRepository;
 import com.mycompany.spring_mvc_project_final.repository.RoleRepository;
@@ -16,7 +13,9 @@ import com.mycompany.spring_mvc_project_final.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -26,6 +25,8 @@ import java.util.Set;
  */
 @Service
 public class RegistrationService {
+    @Autowired
+    TodayDietService todayDietService;
     @Autowired
     private AccountRepository accountRepository;
     @Autowired
@@ -37,6 +38,9 @@ public class RegistrationService {
     public RegistrationService(BCryptPasswordEncoder bCryptPasswordEncoder) {
         this.bCryptPasswordEncoder = bCryptPasswordEncoder;
     }
+    public AccountEntity getAccountByEmail(String email){
+        return accountRepository.findByEmailLike(email);
+    }
 
     public boolean checkExistenceByEmail(String email){
         if (accountRepository.findByEmailLike(email)==null){
@@ -44,7 +48,7 @@ public class RegistrationService {
         }
         return true;
     }
-    public void createUserAccount(UserRequest userRequest){
+    public void createUserAccount(UserRequest userRequest,String verificationCode){
         // Convert UserRequest to UserEntity
         UserEntity userEntity = new UserEntity();
         userEntity.setAge(userRequest.getAge());
@@ -58,7 +62,8 @@ public class RegistrationService {
         AccountEntity accountEntity = new AccountEntity();
         accountEntity.setEmail(userRequest.getAccountRequest().getEmail());
         accountEntity.setPassword(bCryptPasswordEncoder.encode(userRequest.getAccountRequest().getPassword()));
-        accountEntity.setStatus(UserStatus.ACTIVE);
+        accountEntity.setStatus(UserStatus.UNACTIVE);
+        accountEntity.setVerificationCode(verificationCode);
         RoleEntity roleEntity = roleRepository.findByRoleName("ROLE_USER");
         Set<RoleEntity> roles = new HashSet<>();
         roles.add(roleEntity);
@@ -74,6 +79,8 @@ public class RegistrationService {
 
         // Save UserEntity to the database
         userRepository.save(userEntity);
+        userEntity.setTodayDiet(new TodayDietEntity());
+        todayDietService.updateUser(userEntity);
 
     }
 }
