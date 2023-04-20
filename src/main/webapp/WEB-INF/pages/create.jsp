@@ -3,7 +3,6 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="mvc" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
 <html>
 <head>
     <link href="<c:url value="/resources/css/create.css" />" rel="stylesheet">
@@ -12,7 +11,6 @@
      <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script type="text/javascript" src="resources/js/custom.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-
 </head>
 <body>
    <div class="container">
@@ -70,7 +68,6 @@
                         <label for="labels">Nhãn:</label>
                         <div class="checkbox-list" style="display:flex;flex-wrap:wrap;column-gap:15px;row-gap:25px;align-items:center;">
                             <form:checkboxes path="labelRequests" items="${allLabels}" cssClass="custom-checkbox" />
-
                         </div>
                     </div>
                      <div class="form-group">
@@ -79,9 +76,6 @@
                      </div>
                     <button type="submit" class="btn btn-success">Tạo</button>
                 </mvc:form>
-
-
    </div>
-
 </body>
 </html>

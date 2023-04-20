@@ -7,7 +7,6 @@
     <link href="<c:url value="/resources/css/homepage.css" />" rel="stylesheet">
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
 </head>
 <body>
      <jsp:include page="header.jsp" />
@@ -15,7 +14,7 @@
         <div style="text-align:center;width:100%;font-size:medium;font-weight:900;font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">TÌM ĐƯỢC (${listOfFoods.size()}) KẾT QUẢ</div>
         <c:forEach items="${listOfFoods}" var="food">
             <div class="card">
-                <a href="./details/${food.id}">
+                <a href="/project-final/details/${food.id}">
                     <div class="img">
                         <img src="${food.image}" alt="" style="width: 19vw; height: 12vw; object-fit: cover;"><br>
                          <c:if test = "${food.foodsLabelsEntityList.size() != 0}">
@@ -30,6 +29,5 @@
             </div>
         </c:forEach>
     </div>
-
 </body>
 </html>

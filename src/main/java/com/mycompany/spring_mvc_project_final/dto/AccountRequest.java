@@ -13,14 +13,13 @@ import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Set;
 
-
 public class AccountRequest {
-
     private String email;
     private String password;
     private UserRequest userRequest;
     private UserStatus status;
     private Set<RoleEntity> userRoles;
+
     public AccountRequest() {
     }
 
@@ -55,5 +54,4 @@ public class AccountRequest {
     public void setStatus(UserStatus status) {
         this.status = status;
     }
-
 }

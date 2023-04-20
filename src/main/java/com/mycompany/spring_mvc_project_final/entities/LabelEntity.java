@@ -1,7 +1,5 @@
 package com.mycompany.spring_mvc_project_final.entities;
 
-
-
 import javax.persistence.*;
 
 @Entity
@@ -11,7 +9,7 @@ public class LabelEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private int id;
-    @Column(name="name")
+    @Column(name = "name")
     private String name;
 
     public int getId() {
@@ -30,4 +28,3 @@ public class LabelEntity {
         this.name = name;
     }
 }
-

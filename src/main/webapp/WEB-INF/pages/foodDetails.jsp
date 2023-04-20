@@ -11,7 +11,28 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script type="text/javascript" src="<c:url value="/resources/js/details.js" />"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+     <script>
+                 $(document).ready(function(){
+
+                     $('#add-button').click(function() {
+                            var button = $(this);
+                            var foodId = button.data('food-id');
+                            console.log(foodId);
+                            $.ajax({
+                              url:'/project-final/addFoodToDiet',
+                              method: 'POST',
+                              data: { foodId: foodId },
+                              success: function(data) {
+                                  console.log(data);
+                                  var dietCount=$('#diet-count');
+                                  dietCount.html(data);
+
+                              }
+                            });
+                        });
+                 });
+     </script>
+
 </head>
 <body>
     <jsp:include page="header.jsp" />
@@ -20,19 +41,17 @@
                 <div class="name">${food.name}</div>
                 <div class="labels">
                     <c:forEach items="${food.foodsLabelsEntityList}" var="foodLabels">
-                        <a href="/project-final/filterLabel?name=${foodLabels.label.name}" style="text-decoration:none;border-radius:5px;" class="label">${foodLabels.label.name}</a>
+                        <a href="/project-final/filter/Label?name=${foodLabels.label.name}" style="text-decoration:none;border-radius:5px;" class="label">${foodLabels.label.name}</a>
                     </c:forEach>
-
                 </div>
                 <div class="short-des">${food.description}</div>
             </div>
             <div class="calculator">
                 <div class="img"
                     style="background-image: url(${food.image});background-position:center;background-size:cover;background-repeat: no-repeat;">
-                    <div class="image"><a href="/project-final/addFoodToDiet?foodId=${food.id}" id="add-button">Thêm vào thực đơn <ion-icon
-                                name="clipboard-outline"></ion-icon></a></div>
+                    <div class="image"><button data-food-id="${food.id}" id="add-button" style="border:white">Thêm vào thực đơn <ion-icon
+                                name="clipboard-outline"></ion-icon></button></div>
                 </div>
-
                 <div class="ingredient-list">
                     <div class="list-name">Nguyên liệu</div>
                     <div class="list">
@@ -43,10 +62,8 @@
                                     <span style="font-weight:600">${foodIngre.amount}</span>
                                     <span>${foodIngre.measure}</span>
                                 </div>
-
                             </div>
                          </c:forEach>
-
                     </div>
                       <sec:authorize access="isAuthenticated()">
                           <sec:authorize access="hasRole('ROLE_ADMIN')">
@@ -67,54 +84,60 @@
                     <div class="sliding-sections">
                         <div class="section left">
                             <div class="nutrition-list">
-                                <div class="nutrition">
+                                <div class="nutrition" onmouseover="showPopup(this)" onmouseout="hidePopup(this)">
                                     <div class="nutri-name">Năng Lượng</div>
-                                    <div class="nutri-amount">
-                                        <div class="amount-bar" style="background: linear-gradient(#DA4453, #fc6767); width:${food.getCalorieSummary()/user.getAmr()*100}%">
-                                            <span class="amount"></span>
+                                    <div class="nutri-amount" >
+                                        <div class="amount-bar"  style="background: linear-gradient(#DA4453, #fc6767); width:${food.getCalorieSummary()/user.getAmr()*100}%">
+                                            <span class="amount" per=""></span>
                                         </div>
                                     </div>
+                                    <div class="popup">${food.getCalorieSummary()}/${user.getAmr()}</div>
                                 </div>
-                                <div class="nutrition">
+                                <div class="nutrition" onmouseover="showPopup(this)" onmouseout="hidePopup(this)">
                                     <div class="nutri-name">Bột Đường</div>
                                     <div class="nutri-amount">
                                         <div class="amount-bar" style="background: linear-gradient(#D66D75, #E29587); width:${food.getGlucidSummary()/user.getGlucidNeeded()*100}%">
-                                            <span class="amount"></span>
+                                            <span class="amount" per=""></span>
                                         </div>
                                     </div>
+                                    <div class="popup">${food.getGlucidSummary()}/${user.getGlucidNeeded()}</div>
                                 </div>
-                                <div class="nutrition">
+                                <div class="nutrition" onmouseover="showPopup(this)" onmouseout="hidePopup(this)">
                                     <div class="nutri-name">Đạm</div>
                                     <div class="nutri-amount">
                                         <div class="amount-bar" style="background: linear-gradient(#ff7e5f, #eea849); width:${food.getProteinSummary()/user.getProteinNeeded()*100}%">
-                                            <span class="amount"></span>
+                                            <span class="amount" per=""></span>
                                         </div>
                                     </div>
+                                    <div class="popup">${food.getProteinSummary()}/${user.getProteinNeeded()}</div>
                                 </div>
-                                <div class="nutrition">
+                                <div class="nutrition" onmouseover="showPopup(this)" onmouseout="hidePopup(this)">
                                     <div class="nutri-name">Chất Béo</div>
                                     <div class="nutri-amount">
                                         <div class="amount-bar" style="background: linear-gradient(#ffb347, #ffcc33); width:${food.getLipidSummary()/user.getLipidNeeded()*100}%">
-                                            <span class="amount"></span>
+                                            <span class="amount" per=""></span>
                                         </div>
                                     </div>
+                                    <div class="popup">${food.getLipidSummary()}/${user.getLipidNeeded()}</div>
                                 </div>
-
-                                <div class="nutrition">
+                                <div class="nutrition" onmouseover="showPopup(this)" onmouseout="hidePopup(this)">
                                     <div class="nutri-name">Chất Xơ</div>
                                     <div class="nutri-amount">
                                         <div class="amount-bar" style="background: linear-gradient(#56ab2f, #45B649); width:${food.getCellulozaSummary()/user.getCellulozaNeeded()*100}%">
                                             <span class="amount"></span>
                                         </div>
                                     </div>
+                                    <div class="popup">${food.getCellulozaSummary()}/${user.getCellulozaNeeded()}</div>
                                 </div>
-                                <div class="nutrition">
+                                <div class="nutrition" onmouseover="showPopup(this)" onmouseout="hidePopup(this)">
                                     <div class="nutri-name">Nước</div>
+
                                     <div class="nutri-amount">
                                         <div class="amount-bar" style="background: linear-gradient(#2980B9, #1488CC); width:${food.getWaterSummary()/user.getWaterNeeded()*100}%">
-                                            <span class="amount"></span>
+                                            <span class="amount" ></span>
                                         </div>
                                     </div>
+                                    <div class="popup">${food.getWaterSummary()}/${user.getWaterNeeded()}</div>
                                 </div>
                             </div>
                         </div>
@@ -125,14 +148,9 @@
                                 </p>
                             </div>
                         </div>
-
                     </div>
-
                 </div>
-
             </div>
-
-
     </div>
 </body>
 </html>

@@ -1,4 +1,3 @@
-
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
@@ -20,10 +19,8 @@
                 $('.flip-btn').click(function(){
                     console.log("asd")
                    $('.flip-card-inner').toggleClass('flip');
-
                 });
                 $('.add-friend-btn').click(function() {
-
                     var button = $(this);
                     var friendId = button.data('user-id');
                     console.log(friendId);
@@ -34,23 +31,16 @@
                       method: 'POST',
                       data: { id: friendId },
                       success: function(response) {
-
                       },
-
                     });
                 });
-
              });
-
             let slideIndex = 1;
             showSlides(slideIndex);
-
-
             // Thumbnail image controls
             function currentSlide(n) {
                 showSlides(slideIndex = n);
             }
-
             function showSlides(n) {
                 let i;
                 let slides = document.getElementsByClassName("section");
@@ -59,20 +49,12 @@
                 if (n < 1) { slideIndex = slides.length }
                 for (i = 0; i < slides.length; i++) {
                     slides[i].style.display = "none";
-
                 }
-
                 slides[slideIndex - 1].style.display = "block";
-
             }
-
-
-
-
         </script>
     </head>
     <body>
-
         <div class="header" >
                <div class="sysbar">
                    <a href="/project-final/">COOKING SPY</a>
@@ -81,13 +63,11 @@
         <div class="container">
             <div class="flip-card-inner">
                 <div class="flip-card-front">
-                    <div><form:form action="./friendList" method="get" id="search-bar">
+                    <div class="card"><form:form action="./friendList" method="get" id="search-bar">
                                                 <input type="text" name="searchInput"/>
                                                 <button class="header-button" type="submit">TÌM</button>
                                               </form:form></div>
-
-
-                                         <div class="find-list">
+                                         <div class="find-list card" style="min-height:33vw;">
                                              <div style="overflow-y: scroll;">
                                                    <table class="table caption-top">
                                                         <thead>
@@ -101,20 +81,15 @@
                                                               <tr>
                                                                 <td>${account.email}</td>
                                                                 <td>
-
                                                                    <button class="add-friend-btn" data-user-id="${account.id}">Add Friend</button>
-
                                                                 </td>
                                                               </tr>
                                                           </c:forEach>
                                                         </tbody>
                                                      </table>
-
                                              </div>
-
-
                                          </div>
-                     <div><button class="flip-btn" style="width:100%;border:none;background: lightblue;">Xem danh sách bạn bè</button></div>
+                     <div><button class="flip-btn" style="width:100%;border:none;background: lightblue;padding:1vw;">Xem danh sách bạn bè</button></div>
                 </div>
                 <div class="flip-card-back">
                     <div class="section-btn-box">
@@ -129,8 +104,7 @@
                             </div>
                         </button>
                     </div>
-
-                    <div class="sliding-sections">
+                    <div class="sliding-sections card">
                         <div class="section left" style="overflow-y: scroll;">
                               <table class="table caption-top">
                                    <thead>
@@ -145,7 +119,7 @@
                                            <td>${friend.friendAccount.email}</td>
                                            <td>
                                              <div style="display:flex;">
-                                                  <div class="green-text-button" style="margin-right:30px; padding: 1px 5px 1px 5px;">
+                                                  <div class="green-text-button" style="margin-right:30px;">
                                                   <a style="text-decoration:none;color:green;margin-right:5vw;" href="./addFriendToDiet/${friend.friendAccount.id}">Dùng bữa</a>
                                                   <a style="text-decoration:none;color:green;" href="./unfriend/${friend.friendAccount.id}">Hủy kết bạn</a>
                                                   </div>
@@ -155,7 +129,6 @@
                                      </c:forEach>
                                    </tbody>
                                 </table>
-
                         </div>
                         <div class="section right">
                             <div class="tutorial" style="overflow-y: scroll;">
@@ -181,13 +154,10 @@
                                </table>
                             </div>
                         </div>
-
                     </div>
-                    <button class="flip-btn" style="width:100%;border:none;background: lightblue;">Tìm bạn</button>
+                    <button class="flip-btn" style="width:100%;border:none;background: lightblue;padding:1vw;">Tìm bạn</button>
                 </div>
-
             </div>
-
         </div>
     </body>
 </html>

@@ -1,4 +1,3 @@
-
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
@@ -16,10 +15,9 @@
         <link rel="stylesheet" href="<c:url value="/resources/css/registration.css"/>">
     </head>
     <body>
-
         <div class="header" >
                <div class="sysbar">
-                   <a href="">COOKING SPY</a>
+                   <a href="/project-final/homeIndex">COOKING SPY</a>
                </div>
            </div>
            <div class="container">
@@ -47,7 +45,6 @@
                            <label for="des">Cân nặng(kg)</label>
                            <mvc:input type="number" class="form-control" min="5" step="0.1" path="weight"/>
                        </div>
-
                        <div class="form-group">
                            <label for="des">Mức độ hoạt động</label>
                            <mvc:select class="form-control" path="activityLevel">
@@ -57,16 +54,11 @@
                                <option value="4">Người vận động nặng (thường xuyên vận động , chơi thể dục thể thao và tập luyện 6 – 7 lần/tuần)</option>
                                <option value="5">Người vận động rất nặng (tập luyện thể dục 2 lần/ngày, lao động phổ thông)</option>
                            </mvc:select>
-
                        </div>
                        <div class="form-group">
-
-
                        </div>
                     <input type="submit" value="Xác Nhận" style="width: 200px; padding:10px 20px 10px 20px;align-self: center; color:#fff;background-color: black;font-size: 1rem;">
                </mvc:form>
-
            </div>
-       
     </body>
 </html>

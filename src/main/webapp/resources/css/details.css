@@ -1,26 +1,20 @@
-
 body{
-
     padding: 0;
     margin: 0;
-
 }
 .foodinfo-calculator-envaluate-box{
     width:100%;
-    padding: 5vw 3vw 3vw 3vw;
+    padding: 7vw 3vw 3vw 3vw;
     display: flex;
     flex-direction: column;
     column-gap: 1vw;
     row-gap: 1vw;
-
 }
-
 .foodinfo{
     display: flex;
     flex-direction: column;
     align-items: center;
     row-gap: 0.5vw;
-
 }
 .foodinfo .name{
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -28,12 +22,10 @@ body{
     font-size: 2.6rem;
     font-weight: 900;
 }
-
 .foodinfo .labels{
     display: flex;
     column-gap: 1vw;
 }
-
 .foodinfo .short-des{
     font:small-caption;
     font-weight: 100;
@@ -42,7 +34,6 @@ body{
     font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     font-kerning: none;
 }
-
 .foodinfo .labels a{
     padding: 0.1vw 0.4vw 0.1vw 0.4vw;
     background-color: black;
@@ -51,7 +42,6 @@ body{
     font-weight: bolder;
     font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
-
 .calculator{
      box-shadow: 2px 2px 4px rgba(0,0,0,0.2), -2px -2px 4px rgba(255,255,255,0.1);
     display: flex;
@@ -60,12 +50,9 @@ body{
     border-radius:5px;
 }
 .calculator.img{
-
     width: 28vw;
     height: 33vw;
-
 }
-
 .img .image{
     display: flex;
     justify-content: center;
@@ -94,7 +81,6 @@ body{
 }
 .img #add-button:hover {
     transform:scale(1.05);
-
 }
 .calculator .ingredient-list{
     flex-grow: 0.9;
@@ -102,38 +88,28 @@ body{
     display: flex;
     flex-direction: column;
     row-gap: 1vw;
-
     height: 30vw;
-
 }
 .calculator .ingredient-list .list{
-
     padding: 0px 6px 10px 0px;
     display: flex;
     flex-direction: column;
     row-gap: 1vw;
-
      overflow-y: scroll;
 }
-
-
-
 .calculator .ingredient-list .list-name{
     padding: 0px 3px 0px 5px;
     border-bottom: solid 2px black;
     font-size: 1.3rem;
     font-weight: bolder;
     font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-
 }
-
 .calculator .ingredient-list .ingre{
     display: flex;
     justify-content: space-between;
     align-items: center;
     border-bottom: 0.1px dotted gray;
 }
-
 .calculator .ingredient-list .ingre .ingre-name{
     font-weight: bolder;
     font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -163,66 +139,49 @@ body{
     background-color: rgba(0,0,0,0.008);
 }
 .sliding-sections{
-
     position: relative;
     width: 45vw;
     height: 33vw;
 }
 .sliding-sections .section{
-
-
     position: relative;
-
     width: 45vw;
     height: 33vw;
 }
 .sliding-sections .right{
     display: none;
-
 }
-
-
-
-
 .calculator .tutorial{
     background-color: rgba(0,0,0,0.008);
     padding: 1vw 3vw 1vw 3vw;
-
     font-weight:600;
     font-size: 1rem;
     font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     font-kerning: none;
-
 }
 /* width */
 ::-webkit-scrollbar {
     width: 8px;
     border-radius: 10px;
   }
-
   /* Track */
   ::-webkit-scrollbar-track {
     background: rgba(0,0,0,0.1);
     border-radius: 10px;
     background-clip: content-box;
   }
-
   /* Handle */
   ::-webkit-scrollbar-thumb {
     background: black;
     border-radius: 10px;
     width: 9px;
-
   }
-
   /* Handle on hover */
   ::-webkit-scrollbar-thumb:hover {
     background: rgb(240, 131, 89);
   }
-
 .calculator .section-btn-box  .table-name .cap{
     font:small-caption;
-
     font-weight:600;
     font-size: 0.8rem;
     font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -246,8 +205,8 @@ body{
     padding:1vw;
     border-radius:30px;
     box-shadow: 1px 0.6px 2px gray;
+    transition:0.2s;
 }
-
 .calculator .nutrition-list .nutrition .nutri-name{
     padding: 0px 3px 0px 5px;
     font-size: 0.9rem;
@@ -259,23 +218,25 @@ body{
     border-radius:35px;
     width: 80%;
     height: 1vw;
-    overflow: hidden;
+    overflow:hidden;
     box-shadow: 1px 0.6px 3px gray;
+    position:relative;
+
 }
 .calculator .nutrition-list .nutrition .nutri-amount .amount-bar{
     height: 100%;
     border-radius:30px;
-
     box-shadow: 1px 0.6px 3px gray;
     animation: bar-move 0.6s;
     animation-timing-function:cubic-bezier(0.25, 0.46, 0.45, 0.94);
     animation-iteration-count: 1;
+    position:relative;
+
 }
 @keyframes bar-move {
     from {transform: translateX(-100%);}
     to {transform: translateX(0);}
 }
-
 .del-btn{
     align-self:center;
     text-align:center;
@@ -287,5 +248,34 @@ body{
     padding:20px
     border-radius:15px;
     margin-top:30px;
+}
+
+
+.nutrition:hover {
+    transform: scale(1.01);
+    background: #fceabb;
+}
+
+.popup{
+    content: attr(per);
+    position: absolute; /* add this property */
+    padding: 0.1vw 0.3vw 0.1vw 0.3vw;
+    background: linear-gradient(#00c6ff,#00c6ff);
+    color: white;
+    left: 90%;
+    opacity:0;
+
+    font-size: small;
+    transform: translateX(0px);
+
+    font-weight: 500;
+    border-radius: 5px;
+    transition:0.2s;
+}
+.popup.visible {
+    opacity:1;
+    transform: translateY(-100%);
 
 }
+
+

@@ -1,4 +1,3 @@
-
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib prefix="mvc" uri="http://www.springframework.org/tags/form" %>
@@ -26,13 +25,10 @@
 </script>
 <!-- Header Section Begin -->
 <header style="position:fixed;width:100%;z-index: 100000;">
-
  <div class="header" >
           <div class="sysbar">
               <button id="filter-menu"><ion-icon name="menu"></ion-icon></button>
-              <a href="/project-final/home" id="home-icon">COOKING SPY</a>
-
-
+              <a href="/project-final/homeIndex" id="home-icon">COOKING SPY</a>
               <div class="user-bar">
                   <sec:authorize access="isAuthenticated()">
                       <sec:authorize access="hasRole('ROLE_ADMIN')">
@@ -40,39 +36,37 @@
                           <a class="tab" href="<c:url value="/userList" />"style="font-size:medium;flex-grow: 0.1;">DANH SÁCH NGƯỜI DÙNG</a>
                       </sec:authorize>
                       <sec:authorize access="hasRole('ROLE_USER')">
-                            <a id="today-diet" href="<c:url value="/todayDiet" />"><ion-icon name="restaurant"></ion-icon></a>
-
+                            <a id="today-diet" href="<c:url value="/todayDiet" />"><ion-icon name="restaurant"></ion-icon><span id="diet-count">${sessionScope.dietCount}</span></a>
                         </sec:authorize>
-                      <button id="user-btn"><ion-icon name="person-circle"></ion-icon></button>
+                      <button id="user-btn"><ion-icon name="person-circle"></ion-icon><br><span style="font-size:small;max-width:3vw;overflow:hidden;"><sec:authentication property="principal.username"/></span></button>
                   </sec:authorize>
-
               </div>
           </div>
-
-
       </div>
       <div class="navbar">
             <ul>
                 <li class="nav-item" ><form:form action="/project-final/search" method="get" id="search-bar">
-                                                       <input type="text" name="searchInput"/>
-                                                       <button class="header-button" type="submit"><span class="icon"><ion-icon name="search-sharp"></ion-icon></span></button>
-                                                     </form:form></li>
-                <li class="nav-item"><a class="nav-link active" href="/project-final/filterCelluloza">GIÀU CHẤT XƠ</a></li>
-                <li class="nav-item"><a class="nav-link active" href="/project-final/filterProtein">GIÀU ĐẠM</a></li>
-                <li class="nav-item"><a class="nav-link active" href="/project-final/filterLipid">GIÀU CHẤT BÉO</a></li>
-                <li class="nav-item"><a class="nav-link active" href="/project-final/filterGlucid">GIÀU ĐƯỜNG BỘT</a></li>
-                <li class="nav-item"><a class="nav-link active" href="/project-final/filterCalo">MÓN GIÀU NĂNG LƯỢNG</a></li>
-                <li class="nav-item"><a class="nav-link active" href="/project-final/filterWater">MÓN NƯỚC</a></li>
 
+                   <button class="header-button" type="submit"><span class="icon"><ion-icon name="search-sharp"></ion-icon></span></button>
+                   <input style="width:9vw" type="text" name="searchInput"/>
+                 </form:form></li>
+                <li class="nav-item"><a class="nav-link active" href="/project-final/filter/Celluloza">GIÀU CHẤT XƠ</a></li>
+                <li class="nav-item"><a class="nav-link active" href="/project-final/filter/Protein">GIÀU ĐẠM</a></li>
+                <li class="nav-item"><a class="nav-link active" href="/project-final/filter/Lipid">GIÀU CHẤT BÉO</a></li>
+                <li class="nav-item"><a class="nav-link active" href="/project-final/filter/Glucid">GIÀU ĐƯỜNG BỘT</a></li>
+                <li class="nav-item"><a class="nav-link active" href="/project-final/filter/Calo">MÓN GIÀU NĂNG LƯỢNG</a></li>
+                <li class="nav-item"><a class="nav-link active" href="/project-final/filter/Water">MÓN NƯỚC</a></li>
             </ul>
         </div>
       <div class="navbar2">
           <ul>
-              <li class="nav-item"><a class="nav-link active" href="/project-final/updateUserInfoForm"><ion-icon name="create"></ion-icon> CHỈNH SỬA TTCN</a></li>
-              <li class="nav-item"><a class="nav-link active" href="/project-final/friendList?searchInput=''"><ion-icon name="people"></ion-icon> BẠN BÈ</a></li>
+
+                <sec:authorize access="hasRole('ROLE_USER')">
+                      <li class="nav-item"><a class="nav-link active" href="/project-final/updateUserInfoForm"><ion-icon name="create"></ion-icon> CHỈNH SỬA TTCN</a></li>
+                      <li class="nav-item"><a class="nav-link active" href="/project-final/friendList?searchInput=''"><ion-icon name="people"></ion-icon> BẠN BÈ</a></li>
+                </sec:authorize>
+
               <li class="nav-item"><a class="nav-link active" href="<c:url value="/logout" />"><ion-icon name="arrow-undo-circle"></ion-icon> ĐĂNG XUẤT</a></li>
-
-
           </ul>
       </div>
 <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>

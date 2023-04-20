@@ -1,12 +1,9 @@
 package com.mycompany.spring_mvc_project_final.dto;
 
 public class LabelRequest {
-
     private String name;
 
     // getters and setters
-
-
     public LabelRequest() {
     }
 
@@ -26,8 +23,6 @@ public class LabelRequest {
     public String toString() {
         return "{" +
                 "name='" + name + '\'' +
-
                 '}';
     }
 }
-

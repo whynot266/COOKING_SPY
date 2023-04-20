@@ -1,19 +1,11 @@
 package com.mycompany.spring_mvc_project_final.dto;
 
-
-
-
-
 public class IngredientRequest {
-
-
     private String name;
     private double amount;
     private int measure;
 
     // getters and setters
-
-
     public IngredientRequest() {
     }
 
@@ -32,7 +24,7 @@ public class IngredientRequest {
     }
 
     public double getAmount() {
-        return amount;
+        return Double.parseDouble(String.format("%.1f", amount));
     }
 
     public void setAmount(double amount) {
@@ -42,22 +34,24 @@ public class IngredientRequest {
     public int getMeasure() {
         return measure;
     }
-    public String getMeasureName(){
-        if (this.measure==1){
+
+    public String getMeasureName() {
+        if (this.measure == 1) {
             return "g";
-        } else if (this.measure==2) {
+        } else if (this.measure == 2) {
             return "thìa cà phê";
-        } else if (this.measure==3) {
+        } else if (this.measure == 3) {
             return "thìa canh";
         }
         return "";
     }
+
     public double getMeasureCo() {
-        if (this.measure==1){
+        if (this.measure == 1) {
             return 0.01;
-        } else if (this.measure==2) {
+        } else if (this.measure == 2) {
             return 0.05;
-        } else if (this.measure==3) {
+        } else if (this.measure == 3) {
             return 0.15;
         }
         return 0;
@@ -76,4 +70,3 @@ public class IngredientRequest {
                 '}';
     }
 }
-

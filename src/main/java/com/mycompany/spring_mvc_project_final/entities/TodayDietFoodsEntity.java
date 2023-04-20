@@ -1,7 +1,5 @@
 package com.mycompany.spring_mvc_project_final.entities;
 
-
-
 import com.mycompany.spring_mvc_project_final.repository.FoodRepository;
 
 import javax.persistence.*;
@@ -54,4 +52,3 @@ public class TodayDietFoodsEntity {
         this.coefficient = coefficient;
     }
 }
-

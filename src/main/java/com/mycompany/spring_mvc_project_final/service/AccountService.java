@@ -3,7 +3,6 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package com.mycompany.spring_mvc_project_final.service;
-
 import com.mycompany.spring_mvc_project_final.entities.AccountEntity;
 import com.mycompany.spring_mvc_project_final.entities.UserEntity;
 import com.mycompany.spring_mvc_project_final.enums.UserStatus;
@@ -11,9 +10,7 @@ import com.mycompany.spring_mvc_project_final.repository.AccountRepository;
 import com.mycompany.spring_mvc_project_final.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
-
 /**
  *
  * @author Admin
@@ -45,5 +42,4 @@ public class AccountService {
     public List<AccountEntity> getListAccountByJustEmail(String email) {
         return accountRepository.findListAccountByJustEmailLike(email);
     }
-
 }

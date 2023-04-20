@@ -1,6 +1,7 @@
-
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="mvc" uri="http://www.springframework.org/tags/form" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -11,7 +12,10 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
         <title>Login Page</title>
-        <link rel="stylesheet" href="<c:url value="/resources/css/login.css"/>">    
+        <link rel="stylesheet" href="<c:url value="/resources/css/login.css"/>">
+         <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+         <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+
     </head>
     <body>
        <div class="header" >
@@ -19,37 +23,39 @@
                <a href="">COOKING SPY</a>
            </div>
        </div>
-        <div class="container">
-                 <!-- /login?error=true -->
-                  <div class="textbox">
-                        <c:if test="${message != null && message != ''}">
-                            <p style="color: red;">${message}</p>
-                        </c:if>
-                   </div>
-                <form action="<c:url value="j_spring_security_check"/>" method="post" class="card">
-                    <h2 style="align-self: center;">ĐĂNG NHẬP</h2>
 
-                    <div class="form-group">
+         <div class="materialContainer">
 
-                        <label for="name">Email</label>
-                        <input type="email" name="username" placeholder="Username">
-                    </div>
-                    <div class="form-group">
-                        <label for="image">Mật khẩu</label>
-                        <input type="password" name="password"placeholder="Password">
-                    </div>
-                    <div class="res">
-                        <span>Chưa có tài khoản?</span>
-                        <a href="./registrationForm">Tạo tài khoản</a>
-                    </div>
-                    <input type="submit" value="Đăng nhập" style="width: 200px; padding:10px 20px 10px 20px;align-self: center; color:#fff;background-color: black;font-size: 1rem;">
-                    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
-                </form>
+            <form action="<c:url value="j_spring_security_check"/>" method="post" class="card">
+               <div class="box">
 
+                  <div class="title">ĐĂNG NHẬP</div>
 
+                  <div class="input">
+                     <label for="name"></label>
+                     <input type="text" name="username" id="name">
+                     <span class="spin"></span>
+                  </div>
 
-            </div>
+                  <div class="input">
+                     <label for="pass"></label>
+                     <input type="password" name="password" id="pass">
+                     <span class="spin"></span>
+                  </div>
 
-       
+                  <div class="button login">
+                     <button type="submit"><span>GO</span> <i class="fa fa-check"></i></button>
+                     <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+                  </div>
+            </form>
+                  <a href="/project-final/registrationForm" class="pass-forgot"><span>Chưa có tài khoản?</span> Đăng ký</a>
+
+               </div>
+
+               <div class="overbox">
+
+               </div>
+
+         </div>
     </body>
 </html>

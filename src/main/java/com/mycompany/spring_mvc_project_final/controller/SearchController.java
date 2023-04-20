@@ -28,17 +28,11 @@ import java.util.List;
 public class SearchController {
     @Autowired
     HomepageService homepageService;
-    @Autowired
-    DetailsService detailsService;
-    @Autowired
-    AccountService accountService;
+
     @GetMapping(value = "/search")
     public String searchFood(Model model, @RequestParam(value = "searchInput") String input) {
-        List<FoodEntity> foodEntityList= homepageService.getFoodsByInput(input);
+        List<FoodEntity> foodEntityList = homepageService.getFoodsByInput(input);
         model.addAttribute("listOfFoods", foodEntityList);
-
         return "home";
     }
-
-
 }

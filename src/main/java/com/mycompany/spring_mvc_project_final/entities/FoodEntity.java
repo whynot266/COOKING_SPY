@@ -1,7 +1,5 @@
 package com.mycompany.spring_mvc_project_final.entities;
 
-
-
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
 
@@ -20,11 +18,11 @@ public class FoodEntity {
     private String image;
     @Column(name = "description")
     private String description;
-    @OneToMany(mappedBy ="food", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "food", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<FoodsLabelsEntity> foodsLabelsEntityList;
     @Column(name = "tutorial", columnDefinition = "MEDIUMTEXT")
     private String tutorial;
-    @OneToMany(mappedBy ="food", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "food", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @Fetch(value = FetchMode.SUBSELECT)
     private List<FoodsIngredientsEntity> foodsIngredientsEntityList;
 
@@ -84,48 +82,51 @@ public class FoodEntity {
         this.tutorial = tutorial;
     }
 
-    public double getCalorieSummary(){
-        double sum=0;
-        for (FoodsIngredientsEntity foodsIngredients: this.foodsIngredientsEntityList){
-            sum+=foodsIngredients.getIngredient().getCalorie()*foodsIngredients.getAmount()*foodsIngredients.getCoefficient();
+    public int getCalorieSummary() {
+        double sum = 0;
+        for (FoodsIngredientsEntity foodsIngredients : this.foodsIngredientsEntityList) {
+            sum += foodsIngredients.getIngredient().getCalorie() * foodsIngredients.getAmount() * foodsIngredients.getCoefficient();
+        }
+        return (int)sum;
+    }
 
+    public int getWaterSummary() {
+        double sum = 0;
+        for (FoodsIngredientsEntity foodsIngredients : this.foodsIngredientsEntityList) {
+            sum += foodsIngredients.getIngredient().getWater() * foodsIngredients.getAmount() * foodsIngredients.getCoefficient();
         }
-        return sum;
+        return (int)sum;
     }
-    public double getWaterSummary(){
-        double sum=0;
-        for (FoodsIngredientsEntity foodsIngredients: this.foodsIngredientsEntityList){
-            sum+=foodsIngredients.getIngredient().getWater()*foodsIngredients.getAmount()*foodsIngredients.getCoefficient();
-        }
-        return sum;
-    }
-    public double getProteinSummary(){
-        double sum=0;
-        for (FoodsIngredientsEntity foodsIngredients: this.foodsIngredientsEntityList){
-            sum+=foodsIngredients.getIngredient().getProtein()*foodsIngredients.getAmount()*foodsIngredients.getCoefficient()*4;
 
+    public int getProteinSummary() {
+        double sum = 0;
+        for (FoodsIngredientsEntity foodsIngredients : this.foodsIngredientsEntityList) {
+            sum += foodsIngredients.getIngredient().getProtein() * foodsIngredients.getAmount() * foodsIngredients.getCoefficient() * 4;
         }
-        return sum;
+        return (int)sum;
     }
-    public double getLipidSummary(){
-        double sum=0;
-        for (FoodsIngredientsEntity foodsIngredients: this.foodsIngredientsEntityList){
-            sum+=foodsIngredients.getIngredient().getLipid()*foodsIngredients.getAmount()*foodsIngredients.getCoefficient()*9;
+
+    public int getLipidSummary() {
+        double sum = 0;
+        for (FoodsIngredientsEntity foodsIngredients : this.foodsIngredientsEntityList) {
+            sum += foodsIngredients.getIngredient().getLipid() * foodsIngredients.getAmount() * foodsIngredients.getCoefficient() * 9;
         }
-        return sum;
+        return (int)sum;
     }
-    public double getGlucidSummary(){
-        double sum=0;
-        for (FoodsIngredientsEntity foodsIngredients: this.foodsIngredientsEntityList){
-            sum+=foodsIngredients.getIngredient().getGlucid()*foodsIngredients.getAmount()*foodsIngredients.getCoefficient()*4;
+
+    public int getGlucidSummary() {
+        double sum = 0;
+        for (FoodsIngredientsEntity foodsIngredients : this.foodsIngredientsEntityList) {
+            sum += foodsIngredients.getIngredient().getGlucid() * foodsIngredients.getAmount() * foodsIngredients.getCoefficient() * 4;
         }
-        return sum;
+        return (int)sum;
     }
-    public double getCellulozaSummary(){
-        double sum=0;
-        for (FoodsIngredientsEntity foodsIngredients: this.foodsIngredientsEntityList){
-            sum+=foodsIngredients.getIngredient().getCelluloza()*foodsIngredients.getAmount()*foodsIngredients.getCoefficient();
+
+    public int getCellulozaSummary() {
+        double sum = 0;
+        for (FoodsIngredientsEntity foodsIngredients : this.foodsIngredientsEntityList) {
+            sum += foodsIngredients.getIngredient().getCelluloza() * foodsIngredients.getAmount() * foodsIngredients.getCoefficient();
         }
-        return sum;
+        return (int)sum;
     }
 }

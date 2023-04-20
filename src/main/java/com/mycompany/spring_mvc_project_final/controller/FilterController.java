@@ -26,11 +26,10 @@ import java.util.List;
 public class FilterController {
     @Autowired
     HomepageService homepageService;
-    @Autowired
-    DetailsService detailsService;
-    @Autowired
+     @Autowired
     AccountService accountService;
-    @GetMapping(value = "/filterCalo")
+
+    @GetMapping(value = "/filter/Calo")
     public String filterCalo(Model model) {
         List<FoodEntity> foodEntityList = homepageService.listAllFoods();
         Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
@@ -38,17 +37,18 @@ public class FilterController {
         if (principal instanceof UserDetails) {
             username = ((UserDetails) principal).getUsername();
         }
-        UserEntity user= accountService.getUserByUsername(username);
-        List<FoodEntity> listOfFoods= new ArrayList<>();
-        for (FoodEntity food: foodEntityList){
-            if (food.getCalorieSummary()>=user.getAmr()/4){
+        UserEntity user = accountService.getUserByUsername(username);
+        List<FoodEntity> listOfFoods = new ArrayList<>();
+        for (FoodEntity food : foodEntityList) {
+            if (food.getCalorieSummary() >= user.getAmr() / 4) {
                 listOfFoods.add(food);
             }
         }
         model.addAttribute("listOfFoods", listOfFoods);
         return "home";
     }
-    @GetMapping(value = "/filterCelluloza")
+
+    @GetMapping(value = "/filter/Celluloza")
     public String filterCelluloza(Model model) {
         List<FoodEntity> foodEntityList = homepageService.listAllFoods();
         Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
@@ -56,17 +56,18 @@ public class FilterController {
         if (principal instanceof UserDetails) {
             username = ((UserDetails) principal).getUsername();
         }
-        UserEntity user= accountService.getUserByUsername(username);
-        List<FoodEntity> listOfFoods= new ArrayList<>();
-        for (FoodEntity food: foodEntityList){
-            if (food.getCellulozaSummary()>= user.getCellulozaNeeded()/4){
+        UserEntity user = accountService.getUserByUsername(username);
+        List<FoodEntity> listOfFoods = new ArrayList<>();
+        for (FoodEntity food : foodEntityList) {
+            if (food.getCellulozaSummary() >= user.getCellulozaNeeded() / 4) {
                 listOfFoods.add(food);
             }
         }
         model.addAttribute("listOfFoods", listOfFoods);
         return "home";
     }
-    @GetMapping(value = "/filterProtein")
+
+    @GetMapping(value = "/filter/Protein")
     public String filterProtein(Model model) {
         List<FoodEntity> foodEntityList = homepageService.listAllFoods();
         Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
@@ -74,17 +75,18 @@ public class FilterController {
         if (principal instanceof UserDetails) {
             username = ((UserDetails) principal).getUsername();
         }
-        UserEntity user= accountService.getUserByUsername(username);
-        List<FoodEntity> listOfFoods= new ArrayList<>();
-        for (FoodEntity food: foodEntityList){
-            if (food.getProteinSummary()>=user.getProteinNeeded()/4){
+        UserEntity user = accountService.getUserByUsername(username);
+        List<FoodEntity> listOfFoods = new ArrayList<>();
+        for (FoodEntity food : foodEntityList) {
+            if (food.getProteinSummary() >= user.getProteinNeeded() / 4) {
                 listOfFoods.add(food);
             }
         }
         model.addAttribute("listOfFoods", listOfFoods);
         return "home";
     }
-    @GetMapping(value = "/filterGlucid")
+
+    @GetMapping(value = "/filter/Glucid")
     public String filterGlucid(Model model) {
         List<FoodEntity> foodEntityList = homepageService.listAllFoods();
         Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
@@ -92,17 +94,18 @@ public class FilterController {
         if (principal instanceof UserDetails) {
             username = ((UserDetails) principal).getUsername();
         }
-        UserEntity user= accountService.getUserByUsername(username);
-        List<FoodEntity> listOfFoods= new ArrayList<>();
-        for (FoodEntity food: foodEntityList){
-            if (food.getGlucidSummary()>=user.getGlucidNeeded()/4){
+        UserEntity user = accountService.getUserByUsername(username);
+        List<FoodEntity> listOfFoods = new ArrayList<>();
+        for (FoodEntity food : foodEntityList) {
+            if (food.getGlucidSummary() >= user.getGlucidNeeded() / 4) {
                 listOfFoods.add(food);
             }
         }
         model.addAttribute("listOfFoods", listOfFoods);
         return "home";
     }
-    @GetMapping(value = "/filterLipid")
+
+    @GetMapping(value = "/filter/Lipid")
     public String filterLipid(Model model) {
         List<FoodEntity> foodEntityList = homepageService.listAllFoods();
         Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
@@ -110,17 +113,18 @@ public class FilterController {
         if (principal instanceof UserDetails) {
             username = ((UserDetails) principal).getUsername();
         }
-        UserEntity user= accountService.getUserByUsername(username);
-        List<FoodEntity> listOfFoods= new ArrayList<>();
-        for (FoodEntity food: foodEntityList){
-            if (food.getLipidSummary()>=user.getLipidNeeded()/4){
+        UserEntity user = accountService.getUserByUsername(username);
+        List<FoodEntity> listOfFoods = new ArrayList<>();
+        for (FoodEntity food : foodEntityList) {
+            if (food.getLipidSummary() >= user.getLipidNeeded() / 4) {
                 listOfFoods.add(food);
             }
         }
         model.addAttribute("listOfFoods", listOfFoods);
         return "home";
     }
-    @GetMapping(value = "/filterWater")
+
+    @GetMapping(value = "/filter/Water")
     public String filterWater(Model model) {
         List<FoodEntity> foodEntityList = homepageService.listAllFoods();
         Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
@@ -128,17 +132,18 @@ public class FilterController {
         if (principal instanceof UserDetails) {
             username = ((UserDetails) principal).getUsername();
         }
-        UserEntity user= accountService.getUserByUsername(username);
-        List<FoodEntity> listOfFoods= new ArrayList<>();
-        for (FoodEntity food: foodEntityList){
-            if (food.getWaterSummary()>=user.getWaterNeeded()/4){
+        UserEntity user = accountService.getUserByUsername(username);
+        List<FoodEntity> listOfFoods = new ArrayList<>();
+        for (FoodEntity food : foodEntityList) {
+            if (food.getWaterSummary() >= user.getWaterNeeded() / 4) {
                 listOfFoods.add(food);
             }
         }
         model.addAttribute("listOfFoods", listOfFoods);
         return "home";
     }
-    @GetMapping(value = "/filterLabel")
+
+    @GetMapping(value = "/filter/Label")
     public String filterLabbel(Model model, @RequestParam("name") String name) {
         model.addAttribute("listOfFoods", homepageService.getFoodsByLabelName(name));
         return "home";

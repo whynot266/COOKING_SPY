@@ -1,7 +1,5 @@
 package com.mycompany.spring_mvc_project_final.entities;
 
-
-
 import javax.persistence.*;
 
 @Entity

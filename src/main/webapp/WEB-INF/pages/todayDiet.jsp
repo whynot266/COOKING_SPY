@@ -14,8 +14,6 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
-
-
 </head>
 <body>
 <jsp:include page="header.jsp" />
@@ -26,14 +24,10 @@
                 <div style="font-size:small;font-weight:900;">THÀNH VIÊN: </div>
                 <c:forEach items="${todayDiet.todayDietUsersEntityList}" var="dietUser">
                     <div class="user">
-
                             <a class="remove-user-btn" style="align-self:flex-end;font-size:0.9rem;position:absolute;" href="./removeUser/${dietUser.user.id}"><ion-icon name="remove-circle"></ion-icon></a>
                             <div class="icon"><ion-icon name="person"></ion-icon></div>
                             <div class="name">${dietUser.user.account.email}</div>
-
-
                     </div>
-
                 </c:forEach>
             </div>
         </div>
@@ -66,18 +60,13 @@
                                     </form>
                                 </div>
                             </div>
-
                         </a>
                         <a class="remove-btn" href="/project-final/removeFood?id=${dietFood.food.id}">
                                                         <ion-icon name="close-circle"></ion-icon>
                                                     </a>
                     </div>
                 </c:forEach>
-
-
-
             </div>
-
             <div class="ingredient-list">
                 <div class="list-name">Tổng nguyên liệu</div>
                 <div class="list">
@@ -88,10 +77,8 @@
                                 <span style="font-weight:600">${foodIngre.amount}</span>
                                 <span>${foodIngre.measureName}</span>
                             </div>
-
                         </div>
                      </c:forEach>
-
                 </div>
                   <sec:authorize access="isAuthenticated()">
                       <sec:authorize access="hasRole('ROLE_ADMIN')">
@@ -107,70 +94,69 @@
                             <p class="cap">Dựa trên tiêu chuẩn 1 ngày của bạn</p>
                         </div>
                     </button>
-
                 </div>
                 <div class="sliding-sections">
                     <div class="section left">
                         <div class="nutrition-list">
-                            <div class="nutrition">
+                            <div class="nutrition" onmouseover="showPopup(this)" onmouseout="hidePopup(this)">
                                 <div class="nutri-name">Năng Lượng</div>
                                 <div class="nutri-amount">
                                     <div class="amount-bar" style="background: linear-gradient(#DA4453, #fc6767); width:${todayDiet.getCalorieSummary()/todayDiet.getAmrSummary()*100}%">
                                         <span class="amount"></span>
                                     </div>
                                 </div>
+                                <div class="popup">${todayDiet.getCalorieSummary()}/${todayDiet.getAmrSummary()}</div>
                             </div>
-                            <div class="nutrition">
+                            <div class="nutrition" onmouseover="showPopup(this)" onmouseout="hidePopup(this)">
                                 <div class="nutri-name">Bột Đường</div>
                                 <div class="nutri-amount">
                                     <div class="amount-bar" style="background: linear-gradient(#D66D75, #E29587); width:${todayDiet.getGlucidSummary()/todayDiet.getGlucidNeededSummary()*100}%">
                                         <span class="amount"></span>
                                     </div>
                                 </div>
+                                <div class="popup">${todayDiet.getGlucidSummary()}/${todayDiet.getGlucidNeededSummary()}</div>
                             </div>
-                            <div class="nutrition">
+                            <div class="nutrition" onmouseover="showPopup(this)" onmouseout="hidePopup(this)">
                                 <div class="nutri-name">Đạm</div>
                                 <div class="nutri-amount">
                                     <div class="amount-bar" style="background: linear-gradient(#ff7e5f, #eea849); width:${todayDiet.getProteinSummary()/todayDiet.getProteinNeededSummary()*100}%">
                                         <span class="amount"></span>
                                     </div>
                                 </div>
+                                <div class="popup">${todayDiet.getProteinSummary()}/${todayDiet.getProteinNeededSummary()}</div>
                             </div>
-                            <div class="nutrition">
+                            <div class="nutrition" onmouseover="showPopup(this)" onmouseout="hidePopup(this)">
                                 <div class="nutri-name">Chất Béo</div>
                                 <div class="nutri-amount">
                                     <div class="amount-bar" style="background: linear-gradient(#ffb347, #ffcc33); width:${todayDiet.getLipidSummary()/todayDiet.getLipidNeededSummary()*100}%">
                                         <span class="amount"></span>
                                     </div>
                                 </div>
+                                <div class="popup">${todayDiet.getLipidSummary()}/${todayDiet.getLipidNeededSummary()}</div>
                             </div>
-
-                            <div class="nutrition">
+                            <div class="nutrition" onmouseover="showPopup(this)" onmouseout="hidePopup(this)">
                                 <div class="nutri-name">Chất Xơ</div>
                                 <div class="nutri-amount">
                                     <div class="amount-bar" style="background: linear-gradient(#56ab2f, #45B649); width:${todayDiet.getCellulozaSummary()/todayDiet.getCellulozaNeededSummary()*100}%">
                                         <span class="amount"></span>
                                     </div>
                                 </div>
+                                <div class="popup">${todayDiet.getCellulozaSummary()}/${todayDiet.getCellulozaNeededSummary()}</div>
                             </div>
-                            <div class="nutrition">
+                            <div class="nutrition" onmouseover="showPopup(this)" onmouseout="hidePopup(this)">
                                 <div class="nutri-name">Nước</div>
                                 <div class="nutri-amount">
                                     <div class="amount-bar" style="background: linear-gradient(#2980B9, #1488CC); width:${todayDiet.getWaterSummary()/todayDiet.getWaterNeededSummary()*100}%">
                                         <span class="amount"></span>
                                     </div>
                                 </div>
+                                <div class="popup">${todayDiet.getWaterSummary()}/${todayDiet.getWaterNeededSummary()}</div>
                             </div>
                         </div>
                     </div>
-
                 </div>
-
             </div>
-
         </div>
-
-
     </div>
 </body>
 </html>

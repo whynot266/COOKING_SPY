@@ -48,16 +48,14 @@ public class RegisterController {
         return "registration";
     }
 
-
     @RequestMapping(value = "/register", method = RequestMethod.POST)
     public String submitForm(Model model, @ModelAttribute(value = "userRequest") UserRequest user,
-
                              RedirectAttributes redirectAttributes) throws IOException {
         if (registrationService.checkExistenceByEmail(user.getAccountRequest().getEmail()) == true) {
-            if (registrationService.getAccountByEmail(user.getAccountRequest().getEmail()).getStatus().equals(UserStatus.UNACTIVE)){
+            if (registrationService.getAccountByEmail(user.getAccountRequest().getEmail()).getStatus().equals(UserStatus.UNACTIVE)) {
                 redirectAttributes.addFlashAttribute("email", user.getAccountRequest().getEmail());
                 return "redirect:/verificationForm";
-            }else if(user.getAccountRequest().getStatus().equals(UserStatus.ACTIVE)){
+            } else if (user.getAccountRequest().getStatus().equals(UserStatus.ACTIVE)) {
                 return "redirect:/registrationForm";
             }
         } else {
@@ -76,8 +74,6 @@ public class RegisterController {
         return String.format("%04d", random.nextInt(10000));
     }
 
-
-
     private void sendVerificationEmail(String email, String verificationCode) {
         // Prepare email message
         SimpleMailMessage message = new SimpleMailMessage();
@@ -89,41 +85,37 @@ public class RegisterController {
                 "If you did not register for COOKING SPY, please disregard this email.\n\n" +
                 "Thank you,\nCOOKING SPY TEAM");
         // Send email
-
         mailSender.send(message);
     }
+
     @GetMapping("/verificationForm")
-    public String showForm(@ModelAttribute("email") String email){
-        if (email==null||!email.contains("@gmail.com")){
+    public String showForm(@ModelAttribute("email") String email) {
+        if (email == null || !email.contains("@gmail.com")) {
             return "redirect:/login";
-        }else {
+        } else {
             return "verify";
         }
-
     }
+
     @PostMapping("/verify")
     public String verify(@RequestParam("verificationCode") String code, @ModelAttribute("email") String email,
                          RedirectAttributes redirectAttributes) {
         // Find user with verification code
         AccountEntity account = accountRepository.findByVerificationCode(code);
-        if (account!=null){
+        if (account != null) {
             // Verify user and save to database
-            if(account.getEmail().equals(email)){
+            if (account.getEmail().equals(email)) {
                 account.setStatus(UserStatus.ACTIVE);
                 accountRepository.save(account);
                 return "login";
-            }else {
+            } else {
                 redirectAttributes.addFlashAttribute("email", email);
                 return "redirect:/verificationForm";
             }
             // Return success message
-
-        }else{
+        } else {
             redirectAttributes.addFlashAttribute("email", email);
             return "redirect:/verificationForm";
         }
-
-
-
     }
 }

@@ -1,7 +1,5 @@
 package com.mycompany.spring_mvc_project_final.entities;
 
-
-
 import javax.persistence.*;
 import java.util.List;
 
@@ -12,28 +10,20 @@ public class IngredientEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private int id;
-
     @Column(name = "type")
     private String type;
-
-    @Column(name="name")
+    @Column(name = "name")
     private String name;
-
-    @Column(name="calorie")
+    @Column(name = "calorie")
     private double calorie;
-
     @Column(name = "water")
     private double water;
-
     @Column(name = "protein")
     private double protein;
-
     @Column(name = "lipid")
     private double lipid;
-
     @Column(name = "glucid")
     private double glucid;
-
     @Column(name = "celluloza")
     private double celluloza;
 
@@ -111,6 +101,4 @@ public class IngredientEntity {
     public void setCelluloza(double celluloza) {
         this.celluloza = celluloza;
     }
-
-
 }

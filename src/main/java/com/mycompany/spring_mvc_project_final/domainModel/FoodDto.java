@@ -1,24 +1,19 @@
 package com.mycompany.spring_mvc_project_final.domainModel;
 
-
-
 import java.util.List;
 
 public class FoodDto {
-
     private String name;
     private String image;
     private String description;
     private String tutorial;
     private List<IngredientDto> ingredientDtoList;
     private List<LabelDto> labelDtoList;
+
     public FoodDto() {
     }
 
-
-
     // getters and setters omitted for brevity
-
     public FoodDto(String name, String image, String description, String tutorial) {
         this.name = name;
         this.image = image;
@@ -74,4 +69,3 @@ public class FoodDto {
         this.ingredientDtoList = ingredients;
     }
 }
-

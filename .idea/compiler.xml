@@ -8,11 +8,13 @@
         <outputRelativeToContentRoot value="true" />
         <module name="project-final" />
         <module name="Spring_MVC_Project_Final" />
+        <module name="COOKING_SPY" />
       </profile>
     </annotationProcessing>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="COOKING_SPY" options="-endorseddirs &quot;C:\Users\Surface Pro 7 Plus\COOKING_SPY\target/endorsed&quot;" />
       <module name="Spring_MVC_Project_Final" options="-endorseddirs $PROJECT_DIR$/target/endorsed" />
       <module name="project-final" options="-endorseddirs E:\project-final\target/endorsed" />
     </option>

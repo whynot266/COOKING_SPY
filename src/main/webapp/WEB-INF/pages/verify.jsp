@@ -1,4 +1,3 @@
-
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -20,7 +19,6 @@
            </div>
        </div>
         <div class="container">
-
                  <div><h1>XÁC THỰC EMAIL</h1></div>
                  <div style="display:flex;flex-direction:column;"><div style:"text-align:center;font-size:medium;">Một mã xác thực đã được gửi đến địa chỉ email:</div>
                     <div style="text-align:center;color:blue;">${email}</div>
@@ -34,11 +32,6 @@
                      <button type="submit">Xác thực</button>
                  </form>
                   </div>
-
-
-
         </div>
-
-       
     </body>
 </html>

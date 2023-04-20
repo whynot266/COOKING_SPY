@@ -17,8 +17,7 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "account")
-public class AccountEntity{
-
+public class AccountEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
@@ -35,6 +34,7 @@ public class AccountEntity{
     private Set<AccountsRolesEntity> accountsRolesEntitySet;
     @Column(name = "verification_code")
     private String verificationCode;
+
     public AccountEntity() {
     }
 
@@ -69,7 +69,6 @@ public class AccountEntity{
     public void setPassword(String password) {
         this.password = password;
     }
-
 
     public Set<AccountsRolesEntity> getAccountsRolesEntitySet() {
         return accountsRolesEntitySet;

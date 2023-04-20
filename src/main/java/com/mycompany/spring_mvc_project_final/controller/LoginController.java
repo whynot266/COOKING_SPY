@@ -5,8 +5,11 @@
  */
 package com.mycompany.spring_mvc_project_final.controller;
 
+import com.mycompany.spring_mvc_project_final.dto.UserRequest;
 import com.mycompany.spring_mvc_project_final.entities.FoodEntity;
+import com.mycompany.spring_mvc_project_final.entities.TodayDietEntity;
 import com.mycompany.spring_mvc_project_final.entities.UserEntity;
+import com.mycompany.spring_mvc_project_final.service.AccountService;
 import com.mycompany.spring_mvc_project_final.service.DetailsService;
 import com.mycompany.spring_mvc_project_final.service.HomepageService;
 import org.apache.commons.io.IOUtils;
@@ -33,7 +36,8 @@ public class LoginController {
     @Autowired
     HomepageService homepageService;
     @Autowired
-    DetailsService detailsService;
+    AccountService accountService;
+
     @RequestMapping("/login")
     public String loginPage(Model model, @RequestParam(value = "error", required = false) boolean error) {
 
@@ -42,13 +46,32 @@ public class LoginController {
         }
         return "login";
     }
-    @RequestMapping(value = {"/", "/home"}, method = RequestMethod.GET)
+
+    @RequestMapping(value = {"/homeIndex", "/"}, method = RequestMethod.GET)
+    public String index(Model model,HttpSession session) {
+        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        String username = principal.toString();
+        if (principal instanceof UserDetails) {
+            username = ((UserDetails) principal).getUsername();
+        }
+        UserEntity user = accountService.getUserByUsername(username);
+        if(username.equals("admin@gmail.com")){
+
+        }else{
+            session.setAttribute("dietCount", user.getTodayDiet().getTodayDietFoodsEntityList().size());
+        }
+        List<FoodEntity> foodEntityList = homepageService.list12Foods();
+        model.addAttribute("listOfFoods", foodEntityList);
+        if (foodEntityList.size() < 12) {
+            return "redirect:/home";
+        }
+        return "homeIndex";
+    }
+
+    @RequestMapping(value = {"/home"}, method = RequestMethod.GET)
     public String welcomePage(Model model) {
-
         List<FoodEntity> foodEntityList = homepageService.listAllFoods();
-
         model.addAttribute("listOfFoods", foodEntityList);
         return "home";
     }
-
 }

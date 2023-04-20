@@ -3,7 +3,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ page import="java.util.List"%>
 <%@ page import="java.util.ArrayList"%>
-
 <!DOCTYPE html>
 <html>
     <head>
@@ -32,7 +31,6 @@
                 <img style="position:absolute;z-index:5;width: 22px; top: 11px;right: 197px;"  src="<c:url value="/resources/img/email.png"/>">
                 <input type="submit" class="submit" value="">
             </form>
-
             <!--//form-->
         </div>
         <!--//mian-content-->
@@ -41,6 +39,5 @@
                 <p> ©  All rights reserved | Design by <a href="#" target="_blank">Huynh Phi Han</a></p>
         </div> -->
         <!-- //copyright --> 
-
     </body>
 </html>

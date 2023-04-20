@@ -2,21 +2,15 @@ package com.mycompany.spring_mvc_project_final.dto;
 
 public class UserResponse {
     private long id;
-
     private double height;
-
     private double weight;
-
     private int age;
-
     private int gender;
-
     private int activityLevel;
-
     private int status;
 
     public UserResponse(long id, double height, double weight, int age, int gender, int activityLevel, int status) {
-        this.id= id;
+        this.id = id;
         this.height = height;
         this.weight = weight;
         this.age = age;

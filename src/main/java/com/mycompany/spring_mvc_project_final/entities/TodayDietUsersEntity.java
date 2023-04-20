@@ -1,7 +1,5 @@
 package com.mycompany.spring_mvc_project_final.entities;
 
-
-
 import javax.persistence.*;
 import java.util.List;
 
@@ -42,4 +40,3 @@ public class TodayDietUsersEntity {
         this.user = user;
     }
 }
-

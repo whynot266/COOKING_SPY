@@ -1,21 +1,17 @@
 package com.mycompany.spring_mvc_project_final.dto;
 
-
-
 import java.util.List;
 
 public class FoodResponse {
-    private  long id;
-
+    private long id;
     private String name;
     private String image;
     private String description;
     private String tutorial;
     private List<IngredientRequest> ingredientRequests;
     private List<LabelRequest> labelRequests;
+
     // getters and setters
-
-
     public long getId() {
         return id;
     }
@@ -71,7 +67,4 @@ public class FoodResponse {
     public void setIngredientRequests(List<IngredientRequest> ingredientRequests) {
         this.ingredientRequests = ingredientRequests;
     }
-
-
 }
-

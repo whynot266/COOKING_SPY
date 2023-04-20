@@ -6,7 +6,6 @@ $(document).ready(function() {
     $(document).on("keyup", ".ingreName.form-control", function() {
         var inputBox = $(this);
         var suggestionsBox = inputBox.next('.suggestions');
-
         var query = inputBox.val();
         if (query.length >= 2) {
             // Make an AJAX call to the server to get the suggestion list
@@ -29,18 +28,15 @@ $(document).ready(function() {
             suggestionsBox.hide();
         }
     });
-
     // Handle click event on suggestions list
     $(document).on("click", ".suggestions li", function() {
         var value = $(this).text();
         console.log(value);
-
         var inputBox = $(this).closest("td").find('.ingreName.form-control');
         console.log(inputBox);
         inputBox.val(value);
         $(this).closest('.suggestions').hide();
     });
-
     // Handle blur event on input boxes
     $(document).on("blur", ".ingreName.form-control", function() {
         var suggestionsBox = $(this).next('.suggestions');
@@ -60,10 +56,8 @@ $(document).ready(function() {
         $("#ingredientsTable tbody").append(row);
         index++;
     });
-
     $(document).on("click", ".removeIngredientBtn", function() {
         $(this).closest("tr").remove();
         index--;
     });
-
 });

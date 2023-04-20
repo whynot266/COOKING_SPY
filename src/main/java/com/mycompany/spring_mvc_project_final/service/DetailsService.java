@@ -1,5 +1,4 @@
 package com.mycompany.spring_mvc_project_final.service;
-
 import com.mycompany.spring_mvc_project_final.domainModel.IngredientDto;
 import com.mycompany.spring_mvc_project_final.domainModel.LabelDto;
 import com.mycompany.spring_mvc_project_final.dto.FoodRequest;
@@ -9,25 +8,21 @@ import com.mycompany.spring_mvc_project_final.entities.*;
 import com.mycompany.spring_mvc_project_final.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
-
 @Service
 public class DetailsService {
     @Autowired
     FoodRepository foodRepository;
     @Autowired
     IngredientRepository ingredientRepository;
-
     @Autowired
     LabelRepository labelRepository;
     @Autowired
     private FoodsIngredientsRepository foodsIngredientsRepository;
     @Autowired
     private FoodsLabelsRepository foodsLabelsRepository;
-
     public FoodEntity findById(long id){
         return foodRepository.findById(id);
     }
@@ -39,7 +34,6 @@ public class DetailsService {
         }
         return labelEntityList;
     }
-
     public void deleteFoodById(long id){
         foodRepository.delete(foodRepository.findById(id));
     }
@@ -60,7 +54,6 @@ public class DetailsService {
         foodRequest.setImage(foodEntity.getImage());
         foodRequest.setTutorial(foodEntity.getTutorial());
         foodRequest.setName(foodEntity.getName());
-
     }
     public void updateFood(FoodRequest foodRequest){
         FoodEntity food = new FoodEntity();
@@ -88,7 +81,6 @@ public class DetailsService {
                 foodsIngredientsEntity.setIngredient(ingredientRepository.findById(268).get());
             }
             foodsIngredientsEntity.setFood(food);
-
             foodsIngredientsEntity.setAmount(ingredientRequest.getAmount());
             foodsIngredientsEntity.setMeasure(ingredientRequest.getMeasure());
             foodsIngredientsEntityList.add(foodsIngredientsEntity);
@@ -107,11 +99,5 @@ public class DetailsService {
         foodsIngredientsRepository.deleteFoodById(food.getId());
         foodsLabelsRepository.deleteFoodById(food.getId());
         foodRepository.save(food);
-
-
     }
-
-
-
-
 }

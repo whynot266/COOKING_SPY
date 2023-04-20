@@ -1,14 +1,11 @@
 package com.mycompany.spring_mvc_project_final.repository;
-
 import com.mycompany.spring_mvc_project_final.entities.FoodEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
-
 import java.util.List;
-
 @Repository
 public interface FoodRepository extends JpaRepository<FoodEntity, Integer> {
     FoodEntity findById(long id);
@@ -16,5 +13,6 @@ public interface FoodRepository extends JpaRepository<FoodEntity, Integer> {
     List<Long> findIdByInput(String input);
     @Query(value = "select f.id from food_label as fl left join foods as f on fl.food_id=f.id left join labels as l on fl.label_id=l.id where l.name like %?1% group by f.id", nativeQuery = true)
     List<Long> findIdByLabelName(String labelName);
-
+    @Query(value = "select * from foods order by id desc limit 12",nativeQuery = true)
+    List<FoodEntity> find12Foods();
 }

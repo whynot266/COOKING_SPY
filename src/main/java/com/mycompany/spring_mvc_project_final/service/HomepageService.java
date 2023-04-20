@@ -1,5 +1,4 @@
 package com.mycompany.spring_mvc_project_final.service;
-
 import com.mycompany.spring_mvc_project_final.entities.FoodEntity;
 import com.mycompany.spring_mvc_project_final.entities.FoodsLabelsEntity;
 import com.mycompany.spring_mvc_project_final.entities.LabelEntity;
@@ -8,23 +7,21 @@ import com.mycompany.spring_mvc_project_final.repository.IngredientRepository;
 import com.mycompany.spring_mvc_project_final.repository.LabelRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import java.util.ArrayList;
 import java.util.List;
-
 @Service
 public class HomepageService {
     @Autowired
     FoodRepository foodRepository;
     @Autowired
     IngredientRepository ingredientRepository;
-
     @Autowired
     LabelRepository labelRepository;
-
     public List<FoodEntity> listAllFoods(){
-
         return foodRepository.findAll();
+    }
+    public List<FoodEntity> list12Foods(){
+        return foodRepository.find12Foods();
     }
     public List<LabelEntity> getAllLabels(FoodEntity food){
         List<FoodsLabelsEntity> foodsLabelsEntityList= food.getFoodsLabelsEntityList();
@@ -50,8 +47,4 @@ public class HomepageService {
         }
         return foodEntityList;
     }
-
-
-
-
 }

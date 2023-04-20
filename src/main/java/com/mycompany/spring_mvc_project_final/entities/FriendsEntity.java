@@ -1,7 +1,5 @@
 package com.mycompany.spring_mvc_project_final.entities;
 
-
-
 import javax.persistence.*;
 import java.math.BigInteger;
 
@@ -43,4 +41,3 @@ public class FriendsEntity {
         this.friendAccount = friendAccount;
     }
 }
-

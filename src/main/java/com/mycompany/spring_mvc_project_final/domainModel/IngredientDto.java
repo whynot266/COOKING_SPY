@@ -1,9 +1,6 @@
 package com.mycompany.spring_mvc_project_final.domainModel;
 
-
-
 public class IngredientDto {
-
     private String name;
     private double amount;
     private int measure;
@@ -11,17 +8,13 @@ public class IngredientDto {
     public IngredientDto() {
     }
 
-    public IngredientDto( String name, double amount, int measure) {
-
+    public IngredientDto(String name, double amount, int measure) {
         this.name = name;
         this.amount = amount;
         this.measure = measure;
     }
 
     // getters and setters omitted for brevity
-
-
-
     public String getName() {
         return name;
     }
@@ -55,4 +48,3 @@ public class IngredientDto {
                 '}';
     }
 }
-

@@ -1,7 +1,5 @@
 package com.mycompany.spring_mvc_project_final.dto;
 
-
-
 import com.mycompany.spring_mvc_project_final.entities.TodayDietFoodsEntity;
 import com.mycompany.spring_mvc_project_final.entities.TodayDietUsersEntity;
 import com.mycompany.spring_mvc_project_final.entities.UserEntity;
@@ -11,15 +9,10 @@ import org.hibernate.annotations.FetchMode;
 import javax.persistence.*;
 import java.util.List;
 
-
 public class TodayDietResponse {
-
     private long id;
-
     private UserEntity owner;
-
     private List<TodayDietFoodsEntity> todayDietFoodsEntityList;
-
     private List<TodayDietUsersEntity> todayDietUsersEntityList;
 
     public long getId() {
@@ -46,4 +39,3 @@ public class TodayDietResponse {
         this.todayDietUsersEntityList = todayDietUsersEntityList;
     }
 }
-

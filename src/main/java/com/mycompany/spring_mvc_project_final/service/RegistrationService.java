@@ -3,7 +3,6 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package com.mycompany.spring_mvc_project_final.service;
-
 import com.mycompany.spring_mvc_project_final.dto.UserRequest;
 import com.mycompany.spring_mvc_project_final.entities.*;
 import com.mycompany.spring_mvc_project_final.enums.UserStatus;
@@ -14,11 +13,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
-
 import java.io.IOException;
 import java.util.HashSet;
 import java.util.Set;
-
 /**
  *
  * @author Admin
@@ -34,14 +31,12 @@ public class RegistrationService {
     @Autowired
     private RoleRepository roleRepository;
     private final BCryptPasswordEncoder bCryptPasswordEncoder;
-
     public RegistrationService(BCryptPasswordEncoder bCryptPasswordEncoder) {
         this.bCryptPasswordEncoder = bCryptPasswordEncoder;
     }
     public AccountEntity getAccountByEmail(String email){
         return accountRepository.findByEmailLike(email);
     }
-
     public boolean checkExistenceByEmail(String email){
         if (accountRepository.findByEmailLike(email)==null){
             return false;
@@ -57,7 +52,6 @@ public class RegistrationService {
         userEntity.setWeight(userRequest.getWeight());
         userEntity.setStatus(userRequest.getStatus());
         userEntity.setActivityLevel(userRequest.getActivityLevel());
-
         // Create AccountEntity and set it to UserEntity
         AccountEntity accountEntity = new AccountEntity();
         accountEntity.setEmail(userRequest.getAccountRequest().getEmail());
@@ -76,11 +70,9 @@ public class RegistrationService {
         }
         accountEntity.setAccountsRolesEntitySet(accountsRolesEntityList);
         userEntity.setAccount(accountEntity);
-
         // Save UserEntity to the database
         userRepository.save(userEntity);
         userEntity.setTodayDiet(new TodayDietEntity());
         todayDietService.updateUser(userEntity);
-
     }
 }

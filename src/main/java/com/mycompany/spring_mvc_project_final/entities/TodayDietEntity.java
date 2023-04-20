@@ -1,7 +1,5 @@
 package com.mycompany.spring_mvc_project_final.entities;
 
-
-
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
 
@@ -15,9 +13,9 @@ public class TodayDietEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-    @OneToMany(mappedBy ="todayDiet", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "todayDiet", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<TodayDietFoodsEntity> todayDietFoodsEntityList;
-    @OneToMany(mappedBy ="todayDiet", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "todayDiet", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @Fetch(value = FetchMode.SUBSELECT)
     private List<TodayDietUsersEntity> todayDietUsersEntityList;
 
@@ -44,89 +42,100 @@ public class TodayDietEntity {
     public void setTodayDietUsersEntityList(List<TodayDietUsersEntity> todayDietUsersEntityList) {
         this.todayDietUsersEntityList = todayDietUsersEntityList;
     }
-    public double getCalorieSummary(){
-        double sum=0;
-        for (TodayDietFoodsEntity todayDietFoods: this.getTodayDietFoodsEntityList()){
-            sum+=todayDietFoods.getFood().getCalorieSummary()*todayDietFoods.getCoefficient();
+
+    public int getCalorieSummary() {
+        double sum = 0;
+        for (TodayDietFoodsEntity todayDietFoods : this.getTodayDietFoodsEntityList()) {
+            sum += todayDietFoods.getFood().getCalorieSummary() * todayDietFoods.getCoefficient();
         }
-        return sum;
+        return (int)sum;
     }
-    public double getWaterSummary(){
-        double sum=0;
-        for (TodayDietFoodsEntity todayDietFoods: this.getTodayDietFoodsEntityList()){
-            sum+=todayDietFoods.getFood().getWaterSummary()*todayDietFoods.getCoefficient();
+
+    public int getWaterSummary() {
+        double sum = 0;
+        for (TodayDietFoodsEntity todayDietFoods : this.getTodayDietFoodsEntityList()) {
+            sum += todayDietFoods.getFood().getWaterSummary() * todayDietFoods.getCoefficient();
         }
-        return sum;
+        return (int)sum;
     }
-    public double getProteinSummary(){
-        double sum=0;
-        for (TodayDietFoodsEntity todayDietFoods: this.getTodayDietFoodsEntityList()){
-            sum+=todayDietFoods.getFood().getProteinSummary()*todayDietFoods.getCoefficient();
+
+    public int getProteinSummary() {
+        double sum = 0;
+        for (TodayDietFoodsEntity todayDietFoods : this.getTodayDietFoodsEntityList()) {
+            sum += todayDietFoods.getFood().getProteinSummary() * todayDietFoods.getCoefficient();
         }
-        return sum;
+        return (int)sum;
     }
-    public double getLipidSummary(){
-        double sum=0;
-        for (TodayDietFoodsEntity todayDietFoods: this.getTodayDietFoodsEntityList()){
-            sum+=todayDietFoods.getFood().getLipidSummary()*todayDietFoods.getCoefficient();
+
+    public int getLipidSummary() {
+        double sum = 0;
+        for (TodayDietFoodsEntity todayDietFoods : this.getTodayDietFoodsEntityList()) {
+            sum += todayDietFoods.getFood().getLipidSummary() * todayDietFoods.getCoefficient();
         }
-        return sum;
+        return (int)sum;
     }
-    public double getGlucidSummary(){
-        double sum=0;
-        for (TodayDietFoodsEntity todayDietFoods: this.getTodayDietFoodsEntityList()){
-            sum+=todayDietFoods.getFood().getGlucidSummary()*todayDietFoods.getCoefficient();
+
+    public int getGlucidSummary() {
+        double sum = 0;
+        for (TodayDietFoodsEntity todayDietFoods : this.getTodayDietFoodsEntityList()) {
+            sum += todayDietFoods.getFood().getGlucidSummary() * todayDietFoods.getCoefficient();
         }
-        return sum;
+        return (int)sum;
     }
-    public double getCellulozaSummary(){
-        double sum=0;
-        for (TodayDietFoodsEntity todayDietFoods: this.getTodayDietFoodsEntityList()){
-            sum+=todayDietFoods.getFood().getCellulozaSummary()*todayDietFoods.getCoefficient();
+
+    public int getCellulozaSummary() {
+        double sum = 0;
+        for (TodayDietFoodsEntity todayDietFoods : this.getTodayDietFoodsEntityList()) {
+            sum += todayDietFoods.getFood().getCellulozaSummary() * todayDietFoods.getCoefficient();
         }
-        return sum;
+        return (int)sum;
     }
-    public double getAmrSummary(){
-        double sum=0;
-        for (TodayDietUsersEntity todayDietUsersEntity: this.getTodayDietUsersEntityList()){
-            sum+=todayDietUsersEntity.getUser().getAmr();
+
+    public int getAmrSummary() {
+        double sum = 0;
+        for (TodayDietUsersEntity todayDietUsersEntity : this.getTodayDietUsersEntityList()) {
+            sum += todayDietUsersEntity.getUser().getAmr();
         }
-        return sum;
+        return (int)sum;
     }
-    public double getWaterNeededSummary(){
-        double sum=0;
-        for (TodayDietUsersEntity todayDietUsersEntity: this.getTodayDietUsersEntityList()){
-            sum+=todayDietUsersEntity.getUser().getWaterNeeded();
+
+    public int getWaterNeededSummary() {
+        double sum = 0;
+        for (TodayDietUsersEntity todayDietUsersEntity : this.getTodayDietUsersEntityList()) {
+            sum += todayDietUsersEntity.getUser().getWaterNeeded();
         }
-        return sum;
+        return (int)sum;
     }
-    public double getProteinNeededSummary(){
-        double sum=0;
-        for (TodayDietUsersEntity todayDietUsersEntity: this.getTodayDietUsersEntityList()){
-            sum+=todayDietUsersEntity.getUser().getProteinNeeded();
+
+    public int getProteinNeededSummary() {
+        double sum = 0;
+        for (TodayDietUsersEntity todayDietUsersEntity : this.getTodayDietUsersEntityList()) {
+            sum += todayDietUsersEntity.getUser().getProteinNeeded();
         }
-        return sum;
+        return (int)sum;
     }
-    public double getLipidNeededSummary(){
-        double sum=0;
-        for (TodayDietUsersEntity todayDietUsersEntity: this.getTodayDietUsersEntityList()){
-            sum+=todayDietUsersEntity.getUser().getLipidNeeded();
+
+    public int getLipidNeededSummary() {
+        double sum = 0;
+        for (TodayDietUsersEntity todayDietUsersEntity : this.getTodayDietUsersEntityList()) {
+            sum += todayDietUsersEntity.getUser().getLipidNeeded();
         }
-        return sum;
+        return (int)sum;
     }
-    public double getGlucidNeededSummary(){
-        double sum=0;
-        for (TodayDietUsersEntity todayDietUsersEntity: this.getTodayDietUsersEntityList()){
-            sum+=todayDietUsersEntity.getUser().getGlucidNeeded();
+
+    public int getGlucidNeededSummary() {
+        double sum = 0;
+        for (TodayDietUsersEntity todayDietUsersEntity : this.getTodayDietUsersEntityList()) {
+            sum += todayDietUsersEntity.getUser().getGlucidNeeded();
         }
-        return sum;
+        return (int)sum;
     }
-    public double getCellulozaNeededSummary(){
-        double sum=0;
-        for (TodayDietUsersEntity todayDietUsersEntity: this.getTodayDietUsersEntityList()){
-            sum+=todayDietUsersEntity.getUser().getCellulozaNeeded();
+
+    public int getCellulozaNeededSummary() {
+        double sum = 0;
+        for (TodayDietUsersEntity todayDietUsersEntity : this.getTodayDietUsersEntityList()) {
+            sum += todayDietUsersEntity.getUser().getCellulozaNeeded();
         }
-        return sum;
+        return (int)sum;
     }
 }
-

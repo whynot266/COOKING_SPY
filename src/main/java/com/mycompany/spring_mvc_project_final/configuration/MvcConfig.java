@@ -4,7 +4,6 @@
  * and open the template in the editor.
  */
 package com.mycompany.spring_mvc_project_final.configuration;
-
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.boot.web.servlet.MultipartConfigFactory;
 import org.springframework.context.annotation.Bean;
@@ -19,14 +18,11 @@ import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 import org.springframework.web.servlet.view.JstlView;
-
 import javax.servlet.MultipartConfigElement;
-
 @Configuration
 @EnableWebMvc
 @ComponentScan(basePackages = {"com.mycompany.spring_mvc_project_final"})
 public class MvcConfig implements WebMvcConfigurer {
-
     @Bean
     public InternalResourceViewResolver resolver() {
         InternalResourceViewResolver resolver = new InternalResourceViewResolver();
@@ -35,7 +31,6 @@ public class MvcConfig implements WebMvcConfigurer {
         resolver.setSuffix(".jsp");
         return resolver;
     }
-
     @Bean
     public FilterRegistrationBean<CharacterEncodingFilter> characterEncodingFilter() {
         FilterRegistrationBean<CharacterEncodingFilter> registrationBean = new FilterRegistrationBean<>();
@@ -58,7 +53,6 @@ public class MvcConfig implements WebMvcConfigurer {
         resolver.setMaxUploadSize(100 * (long) 1024 * 1024);
         return resolver;
     }
-
     @Bean
     public MultipartConfigElement multipartConfigElement() {
         MultipartConfigFactory factory = new MultipartConfigFactory();

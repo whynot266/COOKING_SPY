@@ -1,5 +1,4 @@
 package com.mycompany.spring_mvc_project_final.service;
-
 import com.mycompany.spring_mvc_project_final.dto.FoodRequest;
 import com.mycompany.spring_mvc_project_final.dto.IngredientRequest;
 import com.mycompany.spring_mvc_project_final.dto.LabelRequest;
@@ -8,11 +7,9 @@ import com.mycompany.spring_mvc_project_final.entities.*;
 import com.mycompany.spring_mvc_project_final.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
-
 @Service
 public class TodayDietService {
     @Autowired
@@ -29,7 +26,6 @@ public class TodayDietService {
     TodayDietFoodsRepository todayDietFoodsRepository;
     @Autowired
     TodayDietUsersRepository todayDietUsersRepository;
-
     public TodayDietEntity getTodayDietByUserId(long id){
         return todayDietRepository.findById(id);
     }
@@ -37,13 +33,13 @@ public class TodayDietService {
         List<IngredientRequest> ingredientRequestList= new ArrayList<>();
         for (int i=0; i< todayDietFoodsEntityList.size();i++){
             for (FoodsIngredientsEntity foodsIngredientsEntity: todayDietFoodsEntityList.get(i).getFood().getFoodsIngredientsEntityList()){
-                ingredientRequestList.add(new IngredientRequest(foodsIngredientsEntity.getIngredient().getName(),foodsIngredientsEntity.getAmount()*todayDietFoodsEntityList.get(i).getCoefficient(),foodsIngredientsEntity.getMeasureInt()));
+                ingredientRequestList.add(new IngredientRequest(foodsIngredientsEntity.getIngredient().getName(),(int)foodsIngredientsEntity.getAmount()*todayDietFoodsEntityList.get(i).getCoefficient(),foodsIngredientsEntity.getMeasureInt()));
             }
         }
         for (int i=0; i<ingredientRequestList.size();i++){
             for (int j=i+1; j<ingredientRequestList.size();j++){
                 if(ingredientRequestList.get(j).getName().equals(ingredientRequestList.get(i).getName())){
-                    ingredientRequestList.get(i).setAmount(ingredientRequestList.get(i).getAmount()+ingredientRequestList.get(j).getAmount()*ingredientRequestList.get(j).getMeasureCo()/ingredientRequestList.get(i).getMeasureCo());
+                    ingredientRequestList.get(i).setAmount((int)ingredientRequestList.get(i).getAmount()+(int)ingredientRequestList.get(j).getAmount()*ingredientRequestList.get(j).getMeasureCo()/ingredientRequestList.get(i).getMeasureCo());
                     ingredientRequestList.remove(ingredientRequestList.get(j));
                 }
             }
@@ -53,8 +49,18 @@ public class TodayDietService {
     public void increaseCoefficientByFoodIdAndUser(long foodId, UserEntity user) {
         TodayDietEntity todayDiet=user.getTodayDiet();
         for (TodayDietFoodsEntity todayDietFoods: todayDiet.getTodayDietFoodsEntityList()){
-            if (todayDietFoods.getFood().getId()==foodId && todayDietFoods.getCoefficient()<2){
+            if (todayDietFoods.getFood().getId()==foodId && todayDietFoods.getCoefficient()<10){
                 double newCoeff= todayDietFoods.getCoefficient()+0.1;
+                todayDietFoodsRepository.deleteTodayDietFoodById(foodId,user.getTodayDiet().getId());
+                todayDietFoodsRepository.insertTodayDietFood(foodId,user.getTodayDiet().getId(),newCoeff);
+            }
+        }
+    }
+    public void increaseCoefficientByFoodIdAndUserBy1(long foodId, UserEntity user) {
+        TodayDietEntity todayDiet=user.getTodayDiet();
+        for (TodayDietFoodsEntity todayDietFoods: todayDiet.getTodayDietFoodsEntityList()){
+            if (todayDietFoods.getFood().getId()==foodId && todayDietFoods.getCoefficient()<9.1){
+                double newCoeff= todayDietFoods.getCoefficient()+1;
                 todayDietFoodsRepository.deleteTodayDietFoodById(foodId,user.getTodayDiet().getId());
                 todayDietFoodsRepository.insertTodayDietFood(foodId,user.getTodayDiet().getId(),newCoeff);
             }
@@ -69,7 +75,6 @@ public class TodayDietService {
                 todayDietFoodsRepository.insertTodayDietFood(foodId,user.getTodayDiet().getId(),newCoeff);
             }
         }
-
     }
     public void deleteFoodFromTodayDietByAdmin(long id){
         todayDietFoodsRepository.deleteTodayDietFoodByAdmin(id);
@@ -86,15 +91,19 @@ public class TodayDietService {
     public void addUserToDiet(UserEntity user, TodayDietEntity todayDiet){
         todayDietUsersRepository.insertTodayDietUser(user.getId(), todayDiet.getId());
     }
-
     public void deleteTodayDiet(TodayDietEntity todayDiet){
         todayDietRepository.delete(todayDiet);
     }
-
     public void deleteUserFromTodayDietById(long id, UserEntity user){
         todayDietUsersRepository.deleteTodayDietUserById(id, user.getTodayDiet().getId());
     }
+    public boolean checkFoodExistence(long id, UserEntity user){
+        for (TodayDietFoodsEntity todayDietFoods : user.getTodayDiet().getTodayDietFoodsEntityList()) {
+            if (todayDietFoods.getFood().getId() == id) {
+                return true;
 
-
-
+            }
+        }
+        return false;
+    }
 }

@@ -1,18 +1,12 @@
 package com.mycompany.spring_mvc_project_final.dto;
 
 public class UserRequest {
-
     private AccountRequest accountRequest;
     private double height;
-
     private double weight;
-
     private int age;
-
     private int gender;
-
     private int activityLevel;
-
     private int status;
 
     public AccountRequest getAccountRequest() {

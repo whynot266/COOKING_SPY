@@ -2,19 +2,16 @@ body{
     background-color:rgba(255,245,230,1);
     padding: 0;
     margin: 0;
-
 }
 .container{
     width:100%;
-
     padding-top: 6vw;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
     column-gap: 1.2vw;
     row-gap: 1.2vw;
-
-
+    padding-bottom: 3vw;
 }
 .card{
     box-shadow: 2px 2px 4px rgba(0,0,0,0.1), -2px -2px 4px rgba(255,255,255,0.05);
@@ -42,7 +39,6 @@ body{
 }
 .card .img{
     width: 90%;
-
     padding: 5% 5% 0% 5%;
 }
 .card .label{
@@ -53,13 +49,11 @@ body{
     font-weight: bolder;
     font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
-
 .img img{
     width: 100%;
     height: 50%;
     object-fit: contain;
 }
-
 .card .title{
     margin-top: 10px;
     padding: 5% 5% 3% 5%;
@@ -70,8 +64,6 @@ body{
     overflow:hidden;
     font-weight: bolder;
 }
-
-
 .card .short-des{
     font:small-caption;
     font-weight: 100;
@@ -80,4 +72,11 @@ body{
     font-size: 0.8rem;
     font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     font-kerning: none;
+    max-height: 33px;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    line-height: 1.2;
+    overflow:hidden;
+    text-overflow: ellipsis;
 }
