@@ -12,7 +12,8 @@
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script type="text/javascript" src="<c:url value="/resources/js/details.js" />"></script>
      <script>
-                 $(document).ready(function(){
+                 $(document).ready(function(){git config --list
+
 
                      $('#add-button').click(function() {
                             var button = $(this);
